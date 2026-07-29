@@ -1,33 +1,25 @@
-# PHMForge: A Scenario-Driven Agentic Benchmark for Industrial Asset Lifecycle Maintenance
+# Trajectory Calibration & Selective Abstention for Agentic Digital Twins
 
-[![Dashboard](https://img.shields.io/badge/Dashboard-Streamlit-FF4B4B)](https://phmforge.streamlit.app)
-[![Paper](https://img.shields.io/badge/Paper-NeurIPS%202026-blue)](Neurips_PHMForge/neurips_2026.tex)
+[![Paper](https://img.shields.io/badge/Paper-IEEE%20SWC%202026-blue)](IEEE_SWC_2026/IEEE_SWC_2026_DigitalTwins.tex)
 [![Scenarios](https://img.shields.io/badge/Scenarios-75-green)]()
-[![License](https://img.shields.io/badge/License-Apache%202.0-lightgrey)]()
+[![License](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)
 
-> **Paper:** *PHMForge: A Scenario-Driven Agentic Benchmark for Industrial Asset Lifecycle Maintenance* (NeurIPS 2026)
+> **Paper:** *Uncertainty Quantification and Selective Abstention for Agentic Digital Twins: A Trajectory Calibration Study on PHMForge* (IEEE SWC 2026 / IEEE Digital Twin 2026)
 
-PHMForge is a living benchmark for evaluating **agentic AI frameworks** on **industrial predictive maintenance (PHM)** tasks. It provides 75 expert-curated scenarios across 5 task categories, executed against an MCP-native tool catalog of 22 domain-specific tools, with reproducible Pass@1 / Pass-all-3 evaluation.
-
-The benchmark answers: *How well can LLM-powered agents perform real-world industrial automation tasks when given a domain-specific tool catalog?*
+This repository contains the complete open-source implementation, diagnostic telemetry extractor, trajectory calibration models (HTC), and benchmark results on **PHMForge** for safety-critical industrial Digital Twins.
 
 ---
 
-## 📋 Project handoff (April 2026)
+## 📋 Repository Structure & Paper Artifacts
 
-This repo is in a **submission-ready** state for NeurIPS 2026. Everything you need is in three places:
+This repo is in a **submission-ready** state for **IEEE SWC 2026 Digital Twins**. Everything you need is organized below:
 
 | Where | What |
 |-------|------|
-| 📄 Paper | `Neurips_PHMForge/neurips_2026.tex` — sections §3 and §4 updated with real benchmark numbers |
-| 📦 Overleaf zip | `/Users/ayandas/Downloads/Neurips_PHMForge_FINAL.zip` (2.4 MB) — drag-and-drop into Overleaf |
-| 💻 Code | This repo — runnable via Docker (Option A) or native Python (Option B). Both verified working. |
-
-**Read these in order**:
-1. `Neurips_PHMForge/HOW_TO_UPLOAD_TO_OVERLEAF.md` — pick fresh upload vs. patch existing project
-2. `Neurips_PHMForge/PHMForge_LaTeX_Changes_Applied.md` — line-by-line table of paper edits
-3. `Neurips_PHMForge/PHMForge_Full_Changelist.md` — full project changelog (codebase + paper + methodology)
-4. This README — running the code
+| 📄 Paper | `IEEE_SWC_2026/IEEE_SWC_2026_DigitalTwins.tex` — IEEE double-column format (4.5 pages) |
+| 📊 Figures | `paper/figures/` — High-res plots (ECE, Risk-Coverage, Feature Importance SHAP, EOC Cost Reduction) |
+| ⚙️ Calibration Code | `phmforge_calibration/` — Feature Extractor $f(\tau)$, Telemetry Logger, HTC Calibrators |
+| 🧪 Pipeline Scripts | `scripts/` — Automated execution sweep & artifact generation (`01_` to `06_`) |
 
 ---
 
@@ -384,8 +376,8 @@ PHMForge-A-Scenario-Driven-Agentic-Benchmark-for-Industrial-Asset-Lifecycle-Main
 │           ├── agents.md                                  # Agent capability spec
 │           └── pyproject.toml
 ├── AssetOpsBench/                                         # IBM AssetOpsBench fork (separate git)
-└── Neurips_PHMForge/                                      # ★ Paper LaTeX source + figures
-    ├── neurips_2026.tex                                   # Main paper
+└── IEEE_SWC_2026/                                         # ★ Paper LaTeX source + figures
+    ├── IEEE_SWC_2026_DigitalTwins.tex                     # Main IEEE paper draft
     ├── PHMForge_Update_Snippets.md                        # 6 LaTeX find/replace blocks
     ├── PHMForge_Full_Changelist.md                        # Comprehensive changelog
     ├── table4_paper_NEW.tex                               # Drop-in table replacement
@@ -503,10 +495,10 @@ To add a new model on WatsonX, append it to `MODEL_NAME_TO_ID` in `benchmark_pas
 ## Citation
 
 ```bibtex
-@inproceedings{phmforge2026,
-  title={PHMForge: A Scenario-Driven Agentic Benchmark for Industrial Asset Lifecycle Maintenance},
-  author={Das, Ayan and others},
-  booktitle={Proceedings of the 39th Conference on Neural Information Processing Systems (NeurIPS) Datasets and Benchmarks Track},
+@inproceedings{altieri2026trajectory,
+  title={Uncertainty Quantification and Selective Abstention for Agentic Digital Twins: A Trajectory Calibration Study on PHMForge},
+  author={Altieri, Umberto},
+  booktitle={IEEE Smart World Congress (SWC 2026) / IEEE Digital Twin 2026},
   year={2026}
 }
 ```
