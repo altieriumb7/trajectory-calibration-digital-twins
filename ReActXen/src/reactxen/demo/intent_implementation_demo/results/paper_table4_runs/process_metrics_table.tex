@@ -1,0 +1,23 @@
+\begin{table}[t]
+\caption{Process metrics for evaluated configurations: average steps taken, total tokens used, and execution time per scenario.}
+\label{tab:process_metrics}
+\centering\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Framework + Model} & \textbf{Avg Steps} & \textbf{Avg Tokens} & \textbf{Avg Time (s)} & \textbf{Pass@1} \\
+\midrule
+ReAct + Llama 4 Maverick & 7.7 & 33,017 & 42.0 & 80.0\% \\
+ReAct + Mistral Medium 2505 & 8.0 & 37,259 & 49.0 & 64.0\% \\
+ReAct + GPT-OSS 120B & 7.6 & 35,157 & 25.7 & 56.0\% \\
+ReAct + Granite 4-H Small & 7.7 & 31,947 & 37.4 & 44.0\% \\
+ReAct + Mistral Small 3.1 24B & 8.2 & 42,161 & 47.0 & 44.0\% \\
+ReAct + Llama 3.3 70B & 6.1 & 24,635 & 312.2 & 36.0\% \\
+ReActXen + GPT-OSS 120B & 6.6 & 30,970 & 74.2 & 68.0\% \\
+ReActXen + Llama 4 Maverick & 7.6 & 33,008 & 113.4 & 64.0\% \\
+ReActXen + Llama 3.3 70B & 8.5 & 41,104 & 425.6 & 50.0\% \\
+ReActXen + Granite 4-H Small & 6.5 & 28,548 & 101.4 & 48.0\% \\
+ReActXen + Mistral Medium 2505 & 7.6 & 36,840 & 134.1 & 48.0\% \\
+ReActXen + Mistral Small 3.1 24B & 8.4 & 46,031 & 138.5 & 48.0\% \\
+\bottomrule
+\end{tabular}
+\end{table}

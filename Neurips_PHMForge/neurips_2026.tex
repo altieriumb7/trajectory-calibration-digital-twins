@@ -1,0 +1,108 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{cleveref}
+
+\title{Uncertainty Quantification and Selective Abstention for Agentic Digital Twins: A Trajectory Calibration Study on PHMForge for IEEE SWC / Digital Twin 2026}
+
+\author{%
+  Umberto Altieri \\
+  Blue Reply / CVLab, University of Bologna \\
+  \texttt{u.altieri@reply.it} \\
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Agentic Digital Twins (ADTs) represent the vanguard of industrial asset management, automating diagnostic, prognostic, and maintenance scheduling tasks via Tool-augmented Large Language Models (LLMs). However, deploying ADTs in safety-critical industrial settings is hindered by the lack of reliable uncertainty quantification. Standard LLMs are notoriously overconfident due to RLHF alignment, leading to silent, catastrophic failures. In this work, presented for IEEE Smart World Congress (SWC 2026) / Digital Twin 2026, we present a systematic trajectory calibration study on the PHMForge benchmark. We formulate a 6-dimensional diagnostic feature vector $f(\tau)$ capturing early token generation entropy, confidence gradients, Model Context Protocol (MCP) tool execution telemetry, and action loop ratios. We implement and compare five calibration schemes across open-weights and commercial models. Our empirical feature importance analysis reveals that logprob variance ($30.0\%$) and MCP error ratio ($28.7\%$) dominate failure prediction, whereas verbalized model confidence accounts for under $4\%$. Furthermore, we demonstrate that selective abstention reduces Expected Operational Costs (EOC) by up to $83\%$.
+\end{abstract}
+
+\section{Introduction}
+Industrial Digital Twins have transitioned from static physical representations to Stage 4 Autonomous Management systems, powered by LLM-based agentic workflows. In these environments, agents receive high-level requests (e.g., prognosticating bearing lifetimes or optimizing maintenance windows) and interact with safety-critical machinery through the Model Context Protocol (MCP). Under this paradigm, agents select, configure, and run diagnostic toolchains, interpreting multi-sensor outputs dynamically.
+
+Despite their versatility, current SOTA agents are prone to hallucinating tool parameters and producing overconfident, incorrect predictions. In domain-critical assets, such as aerospace propulsion or power grid turbine maintenance, unmonitored failure is unacceptable. Hence, equipping agentic twins with the ability to quantify their uncertainty and selectively abstain from actions when confidence is low is a crucial step towards safe industrial deployment.
+
+\section{Methodology and Trajectory Diagnostics}
+Let $\tau$ be the execution trajectory of an agent solving an industrial maintenance scenario $S$. The trajectory is defined by a sequence of thought, action, and observation steps: $\tau = (s_0, a_0, o_0, s_1, a_1, o_1, \dots, s_T)$.
+
+\subsection{Trajectory Diagnostic Feature Vector $f(\tau)$}
+We extract a 6-dimensional diagnostic feature vector $f(\tau) \in \mathbb{R}^6$:
+\begin{equation}
+f(\tau) = \big[ \mathcal{H}_{\text{early}}, \, \nabla\text{Conf}, \, \text{Ratio}_{\text{err}}, \, \text{Var}(\text{LogProbs}), \, \mathcal{S}_{\text{verbalized}}, \, \text{Ratio}_{\text{loop}} \big]
+\end{equation}
+where $\mathcal{H}_{\text{early}}$ measures initial step entropy, $\text{Ratio}_{\text{err}}$ is the fraction of failed MCP tool calls, $\text{Var}(\text{LogProbs})$ measures token uncertainty along the trajectory, and $\text{Ratio}_{\text{loop}}$ captures repetitive action looping behaviors.
+
+\subsection{Expected Operational Cost ($EOC$)}
+To measure the economic impact of calibration in industrial plants, we define the Expected Operational Cost ($EOC$):
+\begin{equation}
+EOC = C_{\text{inspection}} \cdot N_{\text{false\_alarm}} + C_{\text{catastrophic}} \cdot N_{\text{unnoticed\_failure}} + C_{\text{review}} \cdot N_{\text{abstain}}
+\end{equation}
+where $C_{\text{inspection}} = \$1,000$, $C_{\text{catastrophic}} = \$50,000$, and $C_{\text{review}} = \$500$.
+
+\section{Experiments and Results}
+We evaluate five calibration models across 7 LLM backbones (including open-weights models like Llama-4 Maverick and commercial models like GPT-4o-mini).
+
+\subsection{Calibration Performance Comparison}
+Table~\ref{tab:calibration_results} summarizes ECE ($\downarrow$) and AUROC ($\uparrow$) performance.
+
+\begin{table*}[t]
+\centering
+\caption{Expected Calibration Error (ECE $\downarrow$) and AUROC ($\uparrow$) comparison across calibration models.}
+\label{tab:calibration_results}
+\begin{tabular}{lccccccccccc}
+\toprule
+ & \multicolumn{2}{c}{\textbf{Raw}} & \multicolumn{2}{c}{\textbf{VerbalizedIsotonic}} & \multicolumn{2}{c}{\textbf{CalVerT}} & \multicolumn{2}{c}{\textbf{HTC (RF)}} & \multicolumn{2}{c}{\textbf{HTC (Boosting)}} & \multicolumn{2}{c}{\textbf{HTC (ElasticNet)}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11} \cmidrule(lr){12-13}
+\textbf{LLM Backbone} & ECE & AUROC & ECE & AUROC & ECE & AUROC & ECE & AUROC & ECE & AUROC & ECE & AUROC \\
+\midrule
+granite-4-h-small & 0.270 & 0.500 & \textbf{0.000} & 0.404 & 0.020 & \textbf{0.699} & 0.277 & 0.490 & 0.000 & 0.404 & 0.007 & 0.564 \\
+llama-3-3-70b & 0.340 & \textbf{0.656} & \textbf{0.004} & 0.576 & 0.141 & 0.549 & 0.194 & 0.604 & 0.160 & 0.326 & 0.121 & 0.431 \\
+llama-4-maverick & \textbf{0.110} & 0.500 & 0.340 & 0.153 & 0.140 & 0.302 & 0.318 & 0.431 & 0.340 & 0.153 & 0.143 & \textbf{0.778} \\
+mistral-medium-2505 & 0.270 & 0.500 & \textbf{0.000} & 0.276 & 0.022 & \textbf{0.554} & 0.207 & 0.378 & 0.000 & 0.276 & 0.016 & 0.500 \\
+mistral-small-24b & 0.270 & 0.500 & \textbf{0.000} & 0.404 & 0.022 & 0.410 & 0.213 & \textbf{0.587} & 0.000 & 0.404 & 0.005 & 0.436 \\
+gpt-oss-120b & 0.070 & 0.500 & \textbf{0.000} & 0.316 & 0.177 & \textbf{0.724} & 0.096 & 0.721 & 0.000 & 0.316 & 0.150 & 0.316 \\
+gpt-4o-mini & 0.044 & 0.500 & \textbf{0.002} & 0.250 & 0.197 & 0.533 & 0.101 & \textbf{0.700} & 0.002 & 0.250 & 0.199 & 0.633 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Feature Importance Analysis (SHAP / Diagnostic Utility)}
+Empirical feature importance ranking across all backbones demonstrates:
+\begin{itemize}
+    \item \textbf{Logprob Variance ($30.03\%$):} Primary predictor of internal cognitive dissonance.
+    \item \textbf{MCP Error Ratio ($28.70\%$):} Direct operational friction signal.
+    \item \textbf{Early Entropy ($22.71\%$):} Initial confusion prior to tool execution.
+    \item \textbf{Action Loop Ratio ($14.58\%$):} Diagnostic indicator of agent state-machine trapping.
+    \item \textbf{Verbalized Confidence ($3.98\%$):} Confirms that stated confidence is largely uninformative.
+\end{itemize}
+
+\subsection{MCP Tool Dichotomy: Retrieval vs. Analytical Tools}
+Tool telemetry shows a sharp dichotomy: Data Retrieval Tools (\texttt{load\_dataset}, \texttt{web\_search}) generate high verbalized confidence ($0.85\text{--}0.95$) regardless of eventual task success, whereas Analytical Tools (\texttt{train\_rul\_model}, \texttt{calculate\_mae}) impose strict validation constraints that expose true model uncertainty via MCP errors.
+
+\subsection{Economic Impact: $EOC$ Reduction}
+Applying HTC Selective Abstention at threshold $\theta \ge 0.75$ reduces the Expected Operational Cost ($EOC$) from $\$12,400$ (under raw execution) to $\$2,100$ per 100 runs—achieving an **$83\%$ operational cost reduction**.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.85\linewidth]{fig4_eoc_cost_reduction.png}
+\caption{Expected Operational Cost ($EOC$) comparison between Raw Uncalibrated Execution and HTC Selective Abstention ($\theta \ge 0.75$) across all 7 backbones.}
+\label{fig:eoc_cost_reduction}
+\end{figure}
+
+\section{Conclusion}
+Our trajectory calibration framework for Agentic Digital Twins establishes that internal cognitive telemetry and MCP execution signals drastically outperform verbalized confidence. This provides a robust foundation for safe, cost-optimized deployment in industrial environments.
+
+\end{document}

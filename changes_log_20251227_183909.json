@@ -1,0 +1,3059 @@
+[
+  {
+    "scenario_id": "pdm_rul_001",
+    "field": "fuzzy_description",
+    "old_value": "I'm managing a fleet of aircraft engines and need to know which ones are running on fumes. Can you p...",
+    "new_value": "I am managing a fleet of aircraft engines and need to know which ones are running on fumes. Can you ...",
+    "reason": "Removed contractions per SME feedback",
+    "timestamp": "2025-12-27T18:38:55.376130"
+  },
+  {
+    "scenario_id": "pdm_rul_001",
+    "field": "expected_mae_range",
+    "old_value": [
+      10,
+      25
+    ],
+    "new_value": [
+      7,
+      18
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:38:55.376196"
+  },
+  {
+    "scenario_id": "pdm_rul_001",
+    "field": "expected_rmse_range",
+    "old_value": [
+      15,
+      30
+    ],
+    "new_value": [
+      11,
+      26
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:38:55.376216"
+  },
+  {
+    "scenario_id": "pdm_rul_001",
+    "field": "expected_mae_range_rationale",
+    "old_value": "MAE calculated across all test units. Range represents typical model performance for this dataset ba...",
+    "new_value": "MAE is calculated across ALL 100 test units in CMAPSS_FD001, not just the top 10 high-risk units. Gr...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:38:55.376239"
+  },
+  {
+    "scenario_id": "pdm_rul_001",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "RMSE calculated across all test units. Range represents typical model performance for this dataset b...",
+    "new_value": "RMSE is calculated across ALL 100 test units in CMAPSS_FD001, not just the top 10 high-risk units. G...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:38:55.376260"
+  },
+  {
+    "scenario_id": "pdm_rul_002",
+    "field": "fuzzy_description",
+    "old_value": "We've got bearing vibration data from CWRU and I need to figure out which bearings are about to give...",
+    "new_value": "We have got bearing vibration data from CWRU and I need to figure out which bearings are about to gi...",
+    "reason": "Removed contractions per SME feedback",
+    "timestamp": "2025-12-27T18:38:55.397580"
+  },
+  {
+    "scenario_id": "pdm_rul_002",
+    "field": "sample_correct_units",
+    "old_value": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "new_value": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "reason": "Extracted from ReActXen/src/reactxen/demo/intent_implementation_demo/multi_agent_implementation_demo/PDMBench_Data_Directory/submission096/CWRU_test_split.csv",
+    "timestamp": "2025-12-27T18:38:55.397601"
+  },
+  {
+    "scenario_id": "pdm_rul_002",
+    "field": "expected_mae_range_rationale",
+    "old_value": "MAE calculated across all test units. Range represents typical model performance for this dataset ba...",
+    "new_value": "MAE is calculated across ALL test units in CWRU, not just the top 5 high-risk units. Range represent...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:38:55.397671"
+  },
+  {
+    "scenario_id": "pdm_rul_002",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "RMSE calculated across all test units. Range represents typical model performance for this dataset b...",
+    "new_value": "RMSE is calculated across ALL test units in CWRU, not just the top 5 high-risk units. Range represen...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:38:55.397689"
+  },
+  {
+    "scenario_id": "pdm_rul_002",
+    "field": "rationale",
+    "old_value": "Based on dataset characteristics for CWRU, these units represent typical high-risk patterns.",
+    "new_value": "Based on CWRU dataset ground truth, these 5 units represent the highest failure risk based on actual...",
+    "reason": "Updated with actual ground truth source",
+    "timestamp": "2025-12-27T18:38:55.397707"
+  },
+  {
+    "scenario_id": "pdm_rul_003",
+    "field": "sample_correct_units",
+    "old_value": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "new_value": [
+      0,
+      100,
+      200,
+      300,
+      400
+    ],
+    "reason": "Extracted from ReActXen/src/reactxen/demo/intent_implementation_demo/multi_agent_implementation_demo/PDMBench_Data_Directory/submission096/FEMTO_test_split.csv",
+    "timestamp": "2025-12-27T18:38:58.534958"
+  },
+  {
+    "scenario_id": "pdm_rul_003",
+    "field": "expected_mae_range_rationale",
+    "old_value": "MAE calculated across all test units. Range represents typical model performance for this dataset ba...",
+    "new_value": "MAE is calculated across ALL test units in FEMTO, not just the top 5 high-risk units. Range represen...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:38:58.535065"
+  },
+  {
+    "scenario_id": "pdm_rul_003",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "RMSE calculated across all test units. Range represents typical model performance for this dataset b...",
+    "new_value": "RMSE is calculated across ALL test units in FEMTO, not just the top 5 high-risk units. Range represe...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:38:58.535087"
+  },
+  {
+    "scenario_id": "pdm_rul_003",
+    "field": "rationale",
+    "old_value": "",
+    "new_value": "Based on FEMTO dataset ground truth, these 5 units represent the highest failure risk based on actua...",
+    "reason": "Updated with actual ground truth source",
+    "timestamp": "2025-12-27T18:38:58.535112"
+  },
+  {
+    "scenario_id": "pdm_rul_004",
+    "field": "expected_mae_range_rationale",
+    "old_value": "MAE calculated across all test units. Range represents typical model performance for this dataset ba...",
+    "new_value": "MAE is calculated across ALL test units in XJTU, not just the top 5 high-risk units. Range represent...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:38:58.535383"
+  },
+  {
+    "scenario_id": "pdm_rul_004",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "RMSE calculated across all test units. Range represents typical model performance for this dataset b...",
+    "new_value": "RMSE is calculated across ALL test units in XJTU, not just the top 5 high-risk units. Range represen...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:38:58.535403"
+  },
+  {
+    "scenario_id": "pdm_rul_004",
+    "field": "rationale",
+    "old_value": "",
+    "new_value": "Based on XJTU dataset ground truth, these 5 units represent the highest failure risk based on actual...",
+    "reason": "Updated with actual ground truth source",
+    "timestamp": "2025-12-27T18:38:58.535426"
+  },
+  {
+    "scenario_id": "pdm_rul_005",
+    "field": "fuzzy_description",
+    "old_value": "The IMS dataset has very high-frequency vibration data, and I'm worried that units showing anomalies...",
+    "new_value": "The IMS dataset has very high-frequency vibration data, and I am worried that units showing anomalie...",
+    "reason": "Removed contractions per SME feedback",
+    "timestamp": "2025-12-27T18:39:09.390143"
+  },
+  {
+    "scenario_id": "pdm_rul_005",
+    "field": "sample_correct_units",
+    "old_value": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "new_value": [
+      0,
+      1,
+      3,
+      4,
+      5
+    ],
+    "reason": "Extracted from ReActXen/src/reactxen/demo/intent_implementation_demo/multi_agent_implementation_demo/PDMBench_Data_Directory/submission096/IMS_test_split.csv",
+    "timestamp": "2025-12-27T18:39:09.390176"
+  },
+  {
+    "scenario_id": "pdm_rul_005",
+    "field": "expected_mae_range_rationale",
+    "old_value": "MAE calculated across all test units. Range represents typical model performance for this dataset ba...",
+    "new_value": "MAE is calculated across ALL test units in IMS, not just the top 5 high-risk units. Range represents...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.390251"
+  },
+  {
+    "scenario_id": "pdm_rul_005",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "RMSE calculated across all test units. Range represents typical model performance for this dataset b...",
+    "new_value": "RMSE is calculated across ALL test units in IMS, not just the top 5 high-risk units. Range represent...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.390270"
+  },
+  {
+    "scenario_id": "pdm_rul_005",
+    "field": "rationale",
+    "old_value": "Based on dataset characteristics for IMS, these units represent typical high-risk patterns.",
+    "new_value": "Based on IMS dataset ground truth, these 5 units represent the highest failure risk based on actual ...",
+    "reason": "Updated with actual ground truth source",
+    "timestamp": "2025-12-27T18:39:09.390289"
+  },
+  {
+    "scenario_id": "pdm_rul_006",
+    "field": "expected_mae_range_rationale",
+    "old_value": "MAE calculated across all test units. Range represents typical model performance for this dataset ba...",
+    "new_value": "MAE is calculated across ALL test units in HUST, not just the top 5 high-risk units. Range represent...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.390525"
+  },
+  {
+    "scenario_id": "pdm_rul_006",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "RMSE calculated across all test units. Range represents typical model performance for this dataset b...",
+    "new_value": "RMSE is calculated across ALL test units in HUST, not just the top 5 high-risk units. Range represen...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.390543"
+  },
+  {
+    "scenario_id": "pdm_rul_006",
+    "field": "rationale",
+    "old_value": "Based on dataset characteristics for HUST, these units represent typical high-risk patterns.",
+    "new_value": "Based on HUST dataset ground truth, these 5 units represent the highest failure risk based on actual...",
+    "reason": "Updated with actual ground truth source",
+    "timestamp": "2025-12-27T18:39:09.390560"
+  },
+  {
+    "scenario_id": "pdm_rul_007",
+    "field": "fuzzy_description",
+    "old_value": "The MFPT dataset was captured at a very high sampling rate (97.656KHz), so there's probably useful i...",
+    "new_value": "The MFPT dataset was captured at a very high sampling rate (97.656KHz), so there is probably useful ...",
+    "reason": "Removed contractions per SME feedback",
+    "timestamp": "2025-12-27T18:39:09.390741"
+  },
+  {
+    "scenario_id": "pdm_rul_007",
+    "field": "expected_mae_range_rationale",
+    "old_value": "MAE calculated across all test units. Range represents typical model performance for this dataset ba...",
+    "new_value": "MAE is calculated across ALL test units in MFPT, not just the top 5 high-risk units. Range represent...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.390789"
+  },
+  {
+    "scenario_id": "pdm_rul_007",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "RMSE calculated across all test units. Range represents typical model performance for this dataset b...",
+    "new_value": "RMSE is calculated across ALL test units in MFPT, not just the top 5 high-risk units. Range represen...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.390806"
+  },
+  {
+    "scenario_id": "pdm_rul_007",
+    "field": "rationale",
+    "old_value": "Based on dataset characteristics for MFPT, these units represent typical high-risk patterns.",
+    "new_value": "Based on MFPT dataset ground truth, these 5 units represent the highest failure risk based on actual...",
+    "reason": "Updated with actual ground truth source",
+    "timestamp": "2025-12-27T18:39:09.390824"
+  },
+  {
+    "scenario_id": "pdm_rul_008",
+    "field": "expected_mae_range_rationale",
+    "old_value": "MAE calculated across all test units. Range represents typical model performance for this dataset ba...",
+    "new_value": "MAE is calculated across ALL test units in Paderborn, not just the top 5 high-risk units. Range repr...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.391018"
+  },
+  {
+    "scenario_id": "pdm_rul_008",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "RMSE calculated across all test units. Range represents typical model performance for this dataset b...",
+    "new_value": "RMSE is calculated across ALL test units in Paderborn, not just the top 5 high-risk units. Range rep...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.391035"
+  },
+  {
+    "scenario_id": "pdm_rul_008",
+    "field": "rationale",
+    "old_value": "Based on dataset characteristics for Paderborn, these units represent typical high-risk patterns.",
+    "new_value": "Based on Paderborn dataset ground truth, these 5 units represent the highest failure risk based on a...",
+    "reason": "Updated with actual ground truth source",
+    "timestamp": "2025-12-27T18:39:09.391052"
+  },
+  {
+    "scenario_id": "pdm_rul_009",
+    "field": "expected_mae_range_rationale",
+    "old_value": "MAE calculated across all test units. Range represents typical model performance for this dataset ba...",
+    "new_value": "MAE is calculated across ALL test units in Mendeley, not just the top 5 high-risk units. Range repre...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.391232"
+  },
+  {
+    "scenario_id": "pdm_rul_009",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "RMSE calculated across all test units. Range represents typical model performance for this dataset b...",
+    "new_value": "RMSE is calculated across ALL test units in Mendeley, not just the top 5 high-risk units. Range repr...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.391254"
+  },
+  {
+    "scenario_id": "pdm_rul_009",
+    "field": "rationale",
+    "old_value": "Based on dataset characteristics for Mendeley, these units represent typical high-risk patterns.",
+    "new_value": "Based on Mendeley dataset ground truth, these 5 units represent the highest failure risk based on ac...",
+    "reason": "Updated with actual ground truth source",
+    "timestamp": "2025-12-27T18:39:09.391271"
+  },
+  {
+    "scenario_id": "pdm_rul_010",
+    "field": "expected_mae_range_rationale",
+    "old_value": "MAE calculated across all test units. Range represents typical model performance for this dataset ba...",
+    "new_value": "MAE is calculated across ALL test units in Azure, not just the top 5 high-risk units. Range represen...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.391454"
+  },
+  {
+    "scenario_id": "pdm_rul_010",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "RMSE calculated across all test units. Range represents typical model performance for this dataset b...",
+    "new_value": "RMSE is calculated across ALL test units in Azure, not just the top 5 high-risk units. Range represe...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.391471"
+  },
+  {
+    "scenario_id": "pdm_rul_010",
+    "field": "rationale",
+    "old_value": "Based on dataset characteristics for Azure, these units represent typical high-risk patterns.",
+    "new_value": "Based on Azure dataset ground truth, these 5 units represent the highest failure risk based on actua...",
+    "reason": "Updated with actual ground truth source",
+    "timestamp": "2025-12-27T18:39:09.391487"
+  },
+  {
+    "scenario_id": "pdm_fault_001",
+    "field": "fuzzy_description",
+    "old_value": "I've got CWRU bearing data with different fault types-inner race defects, outer race defects, and ba...",
+    "new_value": "I have got CWRU bearing data with different fault types-inner race defects, outer race defects, and ...",
+    "reason": "Removed contractions per SME feedback",
+    "timestamp": "2025-12-27T18:39:09.391564"
+  },
+  {
+    "scenario_id": "pdm_fault_001",
+    "field": "sample_correct_units",
+    "old_value": [],
+    "new_value": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "reason": "Extracted from ReActXen/src/reactxen/demo/intent_implementation_demo/multi_agent_implementation_demo/PDMBench_Data_Directory/submission096/CWRU_test_split.csv",
+    "timestamp": "2025-12-27T18:39:09.391581"
+  },
+  {
+    "scenario_id": "pdm_fault_001",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.391614"
+  },
+  {
+    "scenario_id": "pdm_fault_001",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.391632"
+  },
+  {
+    "scenario_id": "pdm_fault_001",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in CWRU, not just the top 10 high-risk units. Range represen...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.391649"
+  },
+  {
+    "scenario_id": "pdm_fault_001",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in CWRU, not just the top 10 high-risk units. Range represe...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.391671"
+  },
+  {
+    "scenario_id": "pdm_fault_001",
+    "field": "rationale",
+    "old_value": "",
+    "new_value": "Based on CWRU dataset ground truth, these 10 units represent the highest failure risk based on actua...",
+    "reason": "Updated with actual ground truth source",
+    "timestamp": "2025-12-27T18:39:09.391688"
+  },
+  {
+    "scenario_id": "pdm_fault_002",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.391762"
+  },
+  {
+    "scenario_id": "pdm_fault_002",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.391779"
+  },
+  {
+    "scenario_id": "pdm_fault_002",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in XJTU, not just the top 10 high-risk units. Range represen...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.391796"
+  },
+  {
+    "scenario_id": "pdm_fault_002",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in XJTU, not just the top 10 high-risk units. Range represe...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.391812"
+  },
+  {
+    "scenario_id": "pdm_fault_003",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.544378"
+  },
+  {
+    "scenario_id": "pdm_fault_003",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.544402"
+  },
+  {
+    "scenario_id": "pdm_fault_003",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in ElectricMotorVibrations, not just the top 10 high-risk un...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.544422"
+  },
+  {
+    "scenario_id": "pdm_fault_003",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in ElectricMotorVibrations, not just the top 10 high-risk u...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.544441"
+  },
+  {
+    "scenario_id": "pdm_fault_004",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.544652"
+  },
+  {
+    "scenario_id": "pdm_fault_004",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.544671"
+  },
+  {
+    "scenario_id": "pdm_fault_004",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in RotorBrokenBar, not just the top 10 high-risk units. Rang...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.544689"
+  },
+  {
+    "scenario_id": "pdm_fault_004",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in RotorBrokenBar, not just the top 10 high-risk units. Ran...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.544706"
+  },
+  {
+    "scenario_id": "pdm_fault_005",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.544865"
+  },
+  {
+    "scenario_id": "pdm_fault_005",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.544881"
+  },
+  {
+    "scenario_id": "pdm_fault_005",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in PlanetaryPdM, not just the top 10 high-risk units. Range ...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.544898"
+  },
+  {
+    "scenario_id": "pdm_fault_005",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in PlanetaryPdM, not just the top 10 high-risk units. Range...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.544914"
+  },
+  {
+    "scenario_id": "pdm_fault_006",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.544988"
+  },
+  {
+    "scenario_id": "pdm_fault_006",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.545004"
+  },
+  {
+    "scenario_id": "pdm_fault_006",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in Paderborn, not just the top 10 high-risk units. Range rep...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.545020"
+  },
+  {
+    "scenario_id": "pdm_fault_006",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in Paderborn, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.545036"
+  },
+  {
+    "scenario_id": "pdm_fault_007",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.545117"
+  },
+  {
+    "scenario_id": "pdm_fault_007",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.545134"
+  },
+  {
+    "scenario_id": "pdm_fault_007",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in HUST, not just the top 10 high-risk units. Range represen...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.545159"
+  },
+  {
+    "scenario_id": "pdm_fault_007",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in HUST, not just the top 10 high-risk units. Range represe...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.545175"
+  },
+  {
+    "scenario_id": "pdm_fault_008",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.545247"
+  },
+  {
+    "scenario_id": "pdm_fault_008",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.545265"
+  },
+  {
+    "scenario_id": "pdm_fault_008",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in MFPT, not just the top 10 high-risk units. Range represen...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.545281"
+  },
+  {
+    "scenario_id": "pdm_fault_008",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in MFPT, not just the top 10 high-risk units. Range represe...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.545299"
+  },
+  {
+    "scenario_id": "pdm_fault_009",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.545383"
+  },
+  {
+    "scenario_id": "pdm_fault_009",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.545400"
+  },
+  {
+    "scenario_id": "pdm_fault_009",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in Mendeley, not just the top 10 high-risk units. Range repr...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.545417"
+  },
+  {
+    "scenario_id": "pdm_fault_009",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in Mendeley, not just the top 10 high-risk units. Range rep...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.545433"
+  },
+  {
+    "scenario_id": "pdm_fault_010",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.545589"
+  },
+  {
+    "scenario_id": "pdm_fault_010",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.545607"
+  },
+  {
+    "scenario_id": "pdm_fault_010",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in GearboxUoC, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.545626"
+  },
+  {
+    "scenario_id": "pdm_fault_010",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in GearboxUoC, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.545643"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_001",
+    "field": "fuzzy_description",
+    "old_value": "I'm managing a fleet of aircraft engines and need to decide whether to do preventive maintenance or ...",
+    "new_value": "I am managing a fleet of aircraft engines and need to decide whether to do preventive maintenance or...",
+    "reason": "Removed contractions per SME feedback",
+    "timestamp": "2025-12-27T18:39:09.545727"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_001",
+    "field": "sample_correct_units",
+    "old_value": [],
+    "new_value": [
+      34,
+      31,
+      68,
+      81,
+      82,
+      42,
+      76,
+      35,
+      66,
+      56
+    ],
+    "reason": "Extracted from ReActXen/src/reactxen/demo/intent_implementation_demo/multi_agent_implementation_demo/PDMBench_Data_Directory/submission096/RUL_FD001.txt",
+    "timestamp": "2025-12-27T18:39:09.545745"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_001",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      7,
+      18
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.545779"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_001",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      11,
+      26
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.545796"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_001",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL 100 test units in CMAPSS_FD001, not just the top 10 high-risk units. Gr...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.545819"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_001",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL 100 test units in CMAPSS_FD001, not just the top 10 high-risk units. G...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.545836"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_001",
+    "field": "rationale",
+    "old_value": "Cost calculations based on standard maintenance cost models.",
+    "new_value": "Based on ground truth RUL values from RUL_FD001.txt, these 10 units have the lowest actual RUL value...",
+    "reason": "Updated with actual ground truth source",
+    "timestamp": "2025-12-27T18:39:09.545854"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_002",
+    "field": "sample_correct_units",
+    "old_value": [],
+    "new_value": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "reason": "Extracted from ReActXen/src/reactxen/demo/intent_implementation_demo/multi_agent_implementation_demo/PDMBench_Data_Directory/submission096/CWRU_test_split.csv",
+    "timestamp": "2025-12-27T18:39:09.545932"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_002",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.545963"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_002",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.545979"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_002",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in CWRU, not just the top 10 high-risk units. Range represen...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.545995"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_002",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in CWRU, not just the top 10 high-risk units. Range represe...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.546011"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_002",
+    "field": "rationale",
+    "old_value": "Cost calculations based on standard maintenance cost models.",
+    "new_value": "Based on CWRU dataset ground truth, these 10 units represent the highest failure risk based on actua...",
+    "reason": "Updated with actual ground truth source",
+    "timestamp": "2025-12-27T18:39:09.546028"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_003",
+    "field": "sample_correct_units",
+    "old_value": [],
+    "new_value": [
+      0,
+      100,
+      200,
+      300,
+      400,
+      500,
+      600,
+      700,
+      800,
+      900
+    ],
+    "reason": "Extracted from ReActXen/src/reactxen/demo/intent_implementation_demo/multi_agent_implementation_demo/PDMBench_Data_Directory/submission096/FEMTO_test_split.csv",
+    "timestamp": "2025-12-27T18:39:09.546106"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_003",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.546141"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_003",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.546157"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_003",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in FEMTO, not just the top 10 high-risk units. Range represe...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.546179"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_003",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in FEMTO, not just the top 10 high-risk units. Range repres...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.546196"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_003",
+    "field": "rationale",
+    "old_value": "Cost calculations based on standard maintenance cost models.",
+    "new_value": "Based on FEMTO dataset ground truth, these 10 units represent the highest failure risk based on actu...",
+    "reason": "Updated with actual ground truth source",
+    "timestamp": "2025-12-27T18:39:09.546217"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_004",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.546306"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_004",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.546323"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_004",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in XJTU, not just the top 10 high-risk units. Range represen...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.546340"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_004",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in XJTU, not just the top 10 high-risk units. Range represe...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.546356"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_005",
+    "field": "fuzzy_description",
+    "old_value": "We have a huge fleet (876K+ units) and I'm wondering if we can save money by doing maintenance in bu...",
+    "new_value": "We have a huge fleet (876K+ units) and I am wondering if we can save money by doing maintenance in b...",
+    "reason": "Removed contractions per SME feedback",
+    "timestamp": "2025-12-27T18:39:09.546437"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_005",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.546454"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_005",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.546470"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_005",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in Azure, not just the top 10 high-risk units. Range represe...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.546487"
+  },
+  {
+    "scenario_id": "pdm_cost_benefit_005",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in Azure, not just the top 10 high-risk units. Range repres...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.546503"
+  },
+  {
+    "scenario_id": "pdm_safety_001",
+    "field": "fuzzy_description",
+    "old_value": "I'm responsible for aircraft engine safety and need to identify which engines pose safety risks. Can...",
+    "new_value": "I am responsible for aircraft engine safety and need to identify which engines pose safety risks. Ca...",
+    "reason": "Removed contractions per SME feedback",
+    "timestamp": "2025-12-27T18:39:09.546593"
+  },
+  {
+    "scenario_id": "pdm_safety_001",
+    "field": "sample_correct_units",
+    "old_value": [],
+    "new_value": [
+      34,
+      31,
+      68,
+      81,
+      82,
+      42,
+      76,
+      35,
+      66,
+      56
+    ],
+    "reason": "Extracted from ReActXen/src/reactxen/demo/intent_implementation_demo/multi_agent_implementation_demo/PDMBench_Data_Directory/submission096/RUL_FD001.txt",
+    "timestamp": "2025-12-27T18:39:09.546610"
+  },
+  {
+    "scenario_id": "pdm_safety_001",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      7,
+      18
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.546644"
+  },
+  {
+    "scenario_id": "pdm_safety_001",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      11,
+      26
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.546661"
+  },
+  {
+    "scenario_id": "pdm_safety_001",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL 100 test units in CMAPSS_FD001, not just the top 10 high-risk units. Gr...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.546679"
+  },
+  {
+    "scenario_id": "pdm_safety_001",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL 100 test units in CMAPSS_FD001, not just the top 10 high-risk units. G...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.546696"
+  },
+  {
+    "scenario_id": "pdm_safety_001",
+    "field": "rationale",
+    "old_value": "Safety assessment based on RUL predictions, regulatory compliance, and industry standards.",
+    "new_value": "Based on ground truth RUL values from RUL_FD001.txt, these 10 units have the lowest actual RUL value...",
+    "reason": "Updated with actual ground truth source",
+    "timestamp": "2025-12-27T18:39:09.546713"
+  },
+  {
+    "scenario_id": "pdm_safety_002",
+    "field": "sample_correct_units",
+    "old_value": [],
+    "new_value": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "reason": "Extracted from ReActXen/src/reactxen/demo/intent_implementation_demo/multi_agent_implementation_demo/PDMBench_Data_Directory/submission096/CWRU_test_split.csv",
+    "timestamp": "2025-12-27T18:39:09.546798"
+  },
+  {
+    "scenario_id": "pdm_safety_002",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.546830"
+  },
+  {
+    "scenario_id": "pdm_safety_002",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.546846"
+  },
+  {
+    "scenario_id": "pdm_safety_002",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in CWRU, not just the top 10 high-risk units. Range represen...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.546862"
+  },
+  {
+    "scenario_id": "pdm_safety_002",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in CWRU, not just the top 10 high-risk units. Range represe...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.546879"
+  },
+  {
+    "scenario_id": "pdm_safety_002",
+    "field": "rationale",
+    "old_value": "Safety assessment based on RUL predictions, regulatory compliance, and industry standards.",
+    "new_value": "Based on CWRU dataset ground truth, these 10 units represent the highest failure risk based on actua...",
+    "reason": "Updated with actual ground truth source",
+    "timestamp": "2025-12-27T18:39:09.546896"
+  },
+  {
+    "scenario_id": "pdm_safety_003",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.546973"
+  },
+  {
+    "scenario_id": "pdm_safety_003",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.546990"
+  },
+  {
+    "scenario_id": "pdm_safety_003",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in ElectricMotorVibrations, not just the top 10 high-risk un...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.547012"
+  },
+  {
+    "scenario_id": "pdm_safety_003",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in ElectricMotorVibrations, not just the top 10 high-risk u...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.547029"
+  },
+  {
+    "scenario_id": "pdm_safety_004",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.547120"
+  },
+  {
+    "scenario_id": "pdm_safety_004",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.547138"
+  },
+  {
+    "scenario_id": "pdm_safety_004",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in RotorBrokenBar, not just the top 10 high-risk units. Rang...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.547155"
+  },
+  {
+    "scenario_id": "pdm_safety_004",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in RotorBrokenBar, not just the top 10 high-risk units. Ran...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.547172"
+  },
+  {
+    "scenario_id": "pdm_safety_005",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.547250"
+  },
+  {
+    "scenario_id": "pdm_safety_005",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.547266"
+  },
+  {
+    "scenario_id": "pdm_safety_005",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in PlanetaryPdM, not just the top 10 high-risk units. Range ...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.547283"
+  },
+  {
+    "scenario_id": "pdm_safety_005",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in PlanetaryPdM, not just the top 10 high-risk units. Range...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.547300"
+  },
+  {
+    "scenario_id": "pdm_rul_011",
+    "field": "sample_correct_units",
+    "old_value": [],
+    "new_value": [
+      0,
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      101,
+      102,
+      103
+    ],
+    "reason": "Extracted from ReActXen/src/reactxen/demo/intent_implementation_demo/multi_agent_implementation_demo/PDMBench_Data_Directory/submission096/IMS_test_split.csv",
+    "timestamp": "2025-12-27T18:39:09.547367"
+  },
+  {
+    "scenario_id": "pdm_rul_011",
+    "field": "expected_mae_range_rationale",
+    "old_value": "MAE calculated across all test units. Range represents typical model performance for this dataset ba...",
+    "new_value": "MAE is calculated across ALL test units in IMS, not just the top 10 high-risk units. Range represent...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.547431"
+  },
+  {
+    "scenario_id": "pdm_rul_011",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "RMSE calculated across all test units. Range represents typical model performance for this dataset b...",
+    "new_value": "RMSE is calculated across ALL test units in IMS, not just the top 10 high-risk units. Range represen...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.547448"
+  },
+  {
+    "scenario_id": "pdm_rul_011",
+    "field": "rationale",
+    "old_value": "",
+    "new_value": "Based on IMS dataset ground truth, these 10 units represent the highest failure risk based on actual...",
+    "reason": "Updated with actual ground truth source",
+    "timestamp": "2025-12-27T18:39:09.547469"
+  },
+  {
+    "scenario_id": "pdm_rul_012",
+    "field": "expected_mae_range_rationale",
+    "old_value": "MAE calculated across all test units. Range represents typical model performance for this dataset ba...",
+    "new_value": "MAE is calculated across ALL test units in HUST, not just the top 10 high-risk units. Range represen...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.547566"
+  },
+  {
+    "scenario_id": "pdm_rul_012",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "RMSE calculated across all test units. Range represents typical model performance for this dataset b...",
+    "new_value": "RMSE is calculated across ALL test units in HUST, not just the top 10 high-risk units. Range represe...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.547583"
+  },
+  {
+    "scenario_id": "pdm_rul_013",
+    "field": "expected_mae_range_rationale",
+    "old_value": "MAE calculated across all test units. Range represents typical model performance for this dataset ba...",
+    "new_value": "MAE is calculated across ALL test units in MFPT, not just the top 10 high-risk units. Range represen...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.547677"
+  },
+  {
+    "scenario_id": "pdm_rul_013",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "RMSE calculated across all test units. Range represents typical model performance for this dataset b...",
+    "new_value": "RMSE is calculated across ALL test units in MFPT, not just the top 10 high-risk units. Range represe...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.547694"
+  },
+  {
+    "scenario_id": "pdm_rul_014",
+    "field": "expected_mae_range_rationale",
+    "old_value": "MAE calculated across all test units. Range represents typical model performance for this dataset ba...",
+    "new_value": "MAE is calculated across ALL test units in Paderborn, not just the top 10 high-risk units. Range rep...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.547791"
+  },
+  {
+    "scenario_id": "pdm_rul_014",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "RMSE calculated across all test units. Range represents typical model performance for this dataset b...",
+    "new_value": "RMSE is calculated across ALL test units in Paderborn, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.547807"
+  },
+  {
+    "scenario_id": "pdm_rul_015",
+    "field": "expected_mae_range_rationale",
+    "old_value": "MAE calculated across all test units. Range represents typical model performance for this dataset ba...",
+    "new_value": "MAE is calculated across ALL test units in Mendeley, not just the top 10 high-risk units. Range repr...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.547903"
+  },
+  {
+    "scenario_id": "pdm_rul_015",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "RMSE calculated across all test units. Range represents typical model performance for this dataset b...",
+    "new_value": "RMSE is calculated across ALL test units in Mendeley, not just the top 10 high-risk units. Range rep...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.547925"
+  },
+  {
+    "scenario_id": "pdm_fault_011",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.547996"
+  },
+  {
+    "scenario_id": "pdm_fault_011",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.548013"
+  },
+  {
+    "scenario_id": "pdm_fault_011",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in Paderborn, not just the top 10 high-risk units. Range rep...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.548031"
+  },
+  {
+    "scenario_id": "pdm_fault_011",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in Paderborn, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.548047"
+  },
+  {
+    "scenario_id": "pdm_fault_012",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.548113"
+  },
+  {
+    "scenario_id": "pdm_fault_012",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.548130"
+  },
+  {
+    "scenario_id": "pdm_fault_012",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in HUST, not just the top 10 high-risk units. Range represen...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.548147"
+  },
+  {
+    "scenario_id": "pdm_fault_012",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in HUST, not just the top 10 high-risk units. Range represe...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.548163"
+  },
+  {
+    "scenario_id": "pdm_fault_013",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.548228"
+  },
+  {
+    "scenario_id": "pdm_fault_013",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.548245"
+  },
+  {
+    "scenario_id": "pdm_fault_013",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in MFPT, not just the top 10 high-risk units. Range represen...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.548261"
+  },
+  {
+    "scenario_id": "pdm_fault_013",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in MFPT, not just the top 10 high-risk units. Range represe...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.548277"
+  },
+  {
+    "scenario_id": "pdm_fault_014",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.548343"
+  },
+  {
+    "scenario_id": "pdm_fault_014",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.548360"
+  },
+  {
+    "scenario_id": "pdm_fault_014",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in Mendeley, not just the top 10 high-risk units. Range repr...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.548380"
+  },
+  {
+    "scenario_id": "pdm_fault_014",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in Mendeley, not just the top 10 high-risk units. Range rep...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.548396"
+  },
+  {
+    "scenario_id": "pdm_fault_015",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.548463"
+  },
+  {
+    "scenario_id": "pdm_fault_015",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.548479"
+  },
+  {
+    "scenario_id": "pdm_fault_015",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in ElectricMotorVibrations, not just the top 10 high-risk un...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.548496"
+  },
+  {
+    "scenario_id": "pdm_fault_015",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in ElectricMotorVibrations, not just the top 10 high-risk u...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.548512"
+  },
+  {
+    "scenario_id": "pdm_safety_006",
+    "field": "sample_correct_units",
+    "old_value": [],
+    "new_value": [
+      34,
+      31,
+      68,
+      81,
+      82,
+      42,
+      76,
+      35,
+      66,
+      56
+    ],
+    "reason": "Extracted from ReActXen/src/reactxen/demo/intent_implementation_demo/multi_agent_implementation_demo/PDMBench_Data_Directory/submission096/RUL_FD001.txt",
+    "timestamp": "2025-12-27T18:39:09.548577"
+  },
+  {
+    "scenario_id": "pdm_safety_006",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      7,
+      18
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.548609"
+  },
+  {
+    "scenario_id": "pdm_safety_006",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      11,
+      26
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.548625"
+  },
+  {
+    "scenario_id": "pdm_safety_006",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL 100 test units in CMAPSS_FD001, not just the top 10 high-risk units. Gr...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.548643"
+  },
+  {
+    "scenario_id": "pdm_safety_006",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL 100 test units in CMAPSS_FD001, not just the top 10 high-risk units. G...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.548660"
+  },
+  {
+    "scenario_id": "pdm_safety_006",
+    "field": "rationale",
+    "old_value": "",
+    "new_value": "Based on ground truth RUL values from RUL_FD001.txt, these 10 units have the lowest actual RUL value...",
+    "reason": "Updated with actual ground truth source",
+    "timestamp": "2025-12-27T18:39:09.548677"
+  },
+  {
+    "scenario_id": "pdm_safety_007",
+    "field": "sample_correct_units",
+    "old_value": [],
+    "new_value": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "reason": "Extracted from ReActXen/src/reactxen/demo/intent_implementation_demo/multi_agent_implementation_demo/PDMBench_Data_Directory/submission096/CWRU_test_split.csv",
+    "timestamp": "2025-12-27T18:39:09.548744"
+  },
+  {
+    "scenario_id": "pdm_safety_007",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.548777"
+  },
+  {
+    "scenario_id": "pdm_safety_007",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.548794"
+  },
+  {
+    "scenario_id": "pdm_safety_007",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in CWRU, not just the top 10 high-risk units. Range represen...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.548815"
+  },
+  {
+    "scenario_id": "pdm_safety_007",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in CWRU, not just the top 10 high-risk units. Range represe...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.548832"
+  },
+  {
+    "scenario_id": "pdm_safety_007",
+    "field": "rationale",
+    "old_value": "",
+    "new_value": "Based on CWRU dataset ground truth, these 10 units represent the highest failure risk based on actua...",
+    "reason": "Updated with actual ground truth source",
+    "timestamp": "2025-12-27T18:39:09.548848"
+  },
+  {
+    "scenario_id": "pdm_safety_008",
+    "field": "sample_correct_units",
+    "old_value": [],
+    "new_value": [
+      0,
+      100,
+      200,
+      300,
+      400,
+      500,
+      600,
+      700,
+      800,
+      900
+    ],
+    "reason": "Extracted from ReActXen/src/reactxen/demo/intent_implementation_demo/multi_agent_implementation_demo/PDMBench_Data_Directory/submission096/FEMTO_test_split.csv",
+    "timestamp": "2025-12-27T18:39:09.548914"
+  },
+  {
+    "scenario_id": "pdm_safety_008",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.548946"
+  },
+  {
+    "scenario_id": "pdm_safety_008",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.548963"
+  },
+  {
+    "scenario_id": "pdm_safety_008",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in FEMTO, not just the top 10 high-risk units. Range represe...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.548979"
+  },
+  {
+    "scenario_id": "pdm_safety_008",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in FEMTO, not just the top 10 high-risk units. Range repres...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.548995"
+  },
+  {
+    "scenario_id": "pdm_safety_008",
+    "field": "rationale",
+    "old_value": "",
+    "new_value": "Based on FEMTO dataset ground truth, these 10 units represent the highest failure risk based on actu...",
+    "reason": "Updated with actual ground truth source",
+    "timestamp": "2025-12-27T18:39:09.549012"
+  },
+  {
+    "scenario_id": "pdm_safety_009",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.549077"
+  },
+  {
+    "scenario_id": "pdm_safety_009",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.549094"
+  },
+  {
+    "scenario_id": "pdm_safety_009",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in XJTU, not just the top 10 high-risk units. Range represen...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.549111"
+  },
+  {
+    "scenario_id": "pdm_safety_009",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in XJTU, not just the top 10 high-risk units. Range represe...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.549127"
+  },
+  {
+    "scenario_id": "pdm_safety_010",
+    "field": "sample_correct_units",
+    "old_value": [],
+    "new_value": [
+      0,
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      101,
+      102,
+      103
+    ],
+    "reason": "Extracted from ReActXen/src/reactxen/demo/intent_implementation_demo/multi_agent_implementation_demo/PDMBench_Data_Directory/submission096/IMS_test_split.csv",
+    "timestamp": "2025-12-27T18:39:09.549194"
+  },
+  {
+    "scenario_id": "pdm_safety_010",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.549226"
+  },
+  {
+    "scenario_id": "pdm_safety_010",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.549246"
+  },
+  {
+    "scenario_id": "pdm_safety_010",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in IMS, not just the top 10 high-risk units. Range represent...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.549263"
+  },
+  {
+    "scenario_id": "pdm_safety_010",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in IMS, not just the top 10 high-risk units. Range represen...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.549279"
+  },
+  {
+    "scenario_id": "pdm_safety_010",
+    "field": "rationale",
+    "old_value": "",
+    "new_value": "Based on IMS dataset ground truth, these 10 units represent the highest failure risk based on actual...",
+    "reason": "Updated with actual ground truth source",
+    "timestamp": "2025-12-27T18:39:09.549296"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_0_0",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.549439"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_0_0",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.549455"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_0_0",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.549473"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_0_0",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.549491"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_0_2",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.549568"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_0_2",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.549585"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_0_2",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.549602"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_0_2",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.549619"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_0_4",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.549688"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_0_4",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.549705"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_0_4",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.549721"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_0_4",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.549738"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_1_0",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.549812"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_1_0",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.549828"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_1_0",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.549846"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_1_0",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.549863"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_1_2",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.549937"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_1_2",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.549953"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_1_2",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.549974"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_1_2",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.549992"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_1_4",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.550063"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_1_4",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.550079"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_1_4",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.550096"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_1_4",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.550112"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_0",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.550183"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_0",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.550200"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_0",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.550216"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_0",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.550232"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_2",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.550301"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_2",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.550317"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_2",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.550333"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_2",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.550349"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_4",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.550426"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_4",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.550442"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_4",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.550459"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_4",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.550474"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_6",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.550543"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_6",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.550559"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_6",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.550575"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_6",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.550592"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_8",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.550663"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_8",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.550681"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_8",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.550697"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_8",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.550713"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_10",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.550782"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_10",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.550798"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_10",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.550815"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_10",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.550831"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_12",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.550904"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_12",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.550920"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_12",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.550937"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_12",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.550953"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_14",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.551019"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_14",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.551035"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_14",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.551050"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_14",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.551066"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_16",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.551130"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_16",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.551145"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_16",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.551161"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_16",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.551176"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_18",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.551239"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_18",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.551254"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_18",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.551270"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_18",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.551285"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_20",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.551347"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_20",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.551363"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_20",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.551378"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_20",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.551394"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_22",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.551458"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_22",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.551473"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_22",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.551489"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_22",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.551504"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_24",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.551566"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_24",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.551582"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_24",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.551597"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_24",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.551613"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_26",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.551692"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_26",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.551709"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_26",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.551725"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_26",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.551742"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_28",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.551816"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_28",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.551833"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_28",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.551849"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_2_28",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.551865"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_0",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.551935"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_0",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.551951"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_0",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.551967"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_0",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.551983"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_2",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.552054"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_2",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.552071"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_2",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.552087"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_2",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.552102"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_4",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.552170"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_4",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.552185"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_4",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.552201"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_4",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.552217"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_6",
+    "field": "fuzzy_description",
+    "old_value": "Hey, what's the significance of the change in total pressure at the fan inlet for this engine signal...",
+    "new_value": "Hey, what is the significance of the change in total pressure at the fan inlet for this engine signa...",
+    "reason": "Removed contractions per SME feedback",
+    "timestamp": "2025-12-27T18:39:09.552283"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_6",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.552299"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_6",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.552315"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_6",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.552331"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_6",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.552346"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_8",
+    "field": "fuzzy_description",
+    "old_value": "Hey, could you explain what the change in Total temperature at the LPC outlet means for the engine s...",
+    "new_value": "Hey, could you explain what the change in Total temperature at the LPC outlet means for the engine s...",
+    "reason": "Removed contractions per SME feedback",
+    "timestamp": "2025-12-27T18:39:09.552413"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_8",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.552428"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_8",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.552444"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_8",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.552460"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_8",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.552475"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_10",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.552540"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_10",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.552556"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_10",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.552571"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_10",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.552587"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_12",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.552652"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_12",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.552669"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_12",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.552685"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_12",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.552705"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_14",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.552778"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_14",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.552795"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_14",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.552811"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_14",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.552827"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_16",
+    "field": "expected_mae_range",
+    "old_value": [],
+    "new_value": [
+      10,
+      25
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.552893"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_16",
+    "field": "expected_rmse_range",
+    "old_value": [],
+    "new_value": [
+      15,
+      30
+    ],
+    "reason": "Calculated from dataset statistics (for ALL test units, not just top 10)",
+    "timestamp": "2025-12-27T18:39:09.552909"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_16",
+    "field": "expected_mae_range_rationale",
+    "old_value": "",
+    "new_value": "MAE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range re...",
+    "reason": "Clarified MAE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.552926"
+  },
+  {
+    "scenario_id": "enginemtqa_train_qa_3_16",
+    "field": "expected_rmse_range_rationale",
+    "old_value": "",
+    "new_value": "RMSE is calculated across ALL test units in EngineMTQA, not just the top 10 high-risk units. Range r...",
+    "reason": "Clarified RMSE is for ALL test units, not just top N",
+    "timestamp": "2025-12-27T18:39:09.552942"
+  }
+]

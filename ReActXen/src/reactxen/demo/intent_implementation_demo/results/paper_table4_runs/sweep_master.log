@@ -1,0 +1,253 @@
+==========================================
+Running react + ibm/granite-4-h-small
+==========================================
+Done. Tail of log:
+    "Cost-Benefit Analysis": {
+      "pass1": 0.5,
+      "correct": 1,
+      "total": 2
+    },
+    "Safety/Policy Evaluation": {
+      "pass1": 0.3333,
+      "correct": 1,
+      "total": 3
+    },
+    "Engine Health Analysis": {
+      "pass1": 0.6,
+      "correct": 6,
+      "total": 10
+    }
+  },
+  "avg_steps": 7.68,
+  "avg_total_tokens": 31947,
+  "avg_time_s": 37.4
+}
+
+==========================================
+Running react + mistralai/mistral-small-3-1-24b-instruct-2503
+==========================================
+Done. Tail of log:
+    "Cost-Benefit Analysis": {
+      "pass1": 0.5,
+      "correct": 1,
+      "total": 2
+    },
+    "Safety/Policy Evaluation": {
+      "pass1": 0.6667,
+      "correct": 2,
+      "total": 3
+    },
+    "Engine Health Analysis": {
+      "pass1": 0.3,
+      "correct": 3,
+      "total": 10
+    }
+  },
+  "avg_steps": 8.24,
+  "avg_total_tokens": 42161,
+  "avg_time_s": 46.99
+}
+
+==========================================
+Running react + openai/gpt-oss-120b
+==========================================
+Done. Tail of log:
+    "Cost-Benefit Analysis": {
+      "pass1": 0.0,
+      "correct": 0,
+      "total": 2
+    },
+    "Safety/Policy Evaluation": {
+      "pass1": 0.0,
+      "correct": 0,
+      "total": 3
+    },
+    "Engine Health Analysis": {
+      "pass1": 0.0,
+      "correct": 0,
+      "total": 10
+    }
+  },
+  "avg_steps": 0.0,
+  "avg_total_tokens": 0,
+  "avg_time_s": 0.0
+}
+
+==========================================
+Running react + mistralai/mistral-medium-2505
+==========================================
+Done. Tail of log:
+    "Cost-Benefit Analysis": {
+      "pass1": 1.0,
+      "correct": 2,
+      "total": 2
+    },
+    "Safety/Policy Evaluation": {
+      "pass1": 1.0,
+      "correct": 3,
+      "total": 3
+    },
+    "Engine Health Analysis": {
+      "pass1": 0.9,
+      "correct": 9,
+      "total": 10
+    }
+  },
+  "avg_steps": 8.04,
+  "avg_total_tokens": 37259,
+  "avg_time_s": 48.96
+}
+
+==========================================
+Running react + meta-llama/llama-3-3-70b-instruct
+==========================================
+Done. Tail of log:
+    "Cost-Benefit Analysis": {
+      "pass1": 1.0,
+      "correct": 2,
+      "total": 2
+    },
+    "Safety/Policy Evaluation": {
+      "pass1": 1.0,
+      "correct": 3,
+      "total": 3
+    },
+    "Engine Health Analysis": {
+      "pass1": 0.2,
+      "correct": 2,
+      "total": 10
+    }
+  },
+  "avg_steps": 6.08,
+  "avg_total_tokens": 24635,
+  "avg_time_s": 312.18
+}
+
+==========================================
+Running react + meta-llama/llama-4-maverick-17b-128e-instruct-fp8
+==========================================
+Done. Tail of log:
+    "Cost-Benefit Analysis": {
+      "pass1": 0.5,
+      "correct": 1,
+      "total": 2
+    },
+    "Safety/Policy Evaluation": {
+      "pass1": 1.0,
+      "correct": 3,
+      "total": 3
+    },
+    "Engine Health Analysis": {
+      "pass1": 0.8,
+      "correct": 8,
+      "total": 10
+    }
+  },
+  "avg_steps": 7.68,
+  "avg_total_tokens": 33017,
+  "avg_time_s": 42.0
+}
+
+==========================================
+Running reactxen + ibm/granite-4-h-small
+==========================================
+Done. Tail of log:
+    "Cost-Benefit Analysis": {
+      "pass1": 1.0,
+      "correct": 2,
+      "total": 2
+    },
+    "Safety/Policy Evaluation": {
+      "pass1": 1.0,
+      "correct": 3,
+      "total": 3
+    },
+    "Engine Health Analysis": {
+      "pass1": 0.6,
+      "correct": 6,
+      "total": 10
+    }
+  },
+  "avg_steps": 6.48,
+  "avg_total_tokens": 28548,
+  "avg_time_s": 101.37
+}
+
+==========================================
+Running reactxen + mistralai/mistral-small-3-1-24b-instruct-2503
+==========================================
+Done. Tail of log:
+    "Cost-Benefit Analysis": {
+      "pass1": 1.0,
+      "correct": 2,
+      "total": 2
+    },
+    "Safety/Policy Evaluation": {
+      "pass1": 1.0,
+      "correct": 3,
+      "total": 3
+    },
+    "Engine Health Analysis": {
+      "pass1": 0.3,
+      "correct": 3,
+      "total": 10
+    }
+  },
+  "avg_steps": 8.36,
+  "avg_total_tokens": 46031,
+  "avg_time_s": 138.53
+}
+
+==========================================
+Running reactxen + openai/gpt-oss-120b
+==========================================
+Done. Tail of log:
+    "Cost-Benefit Analysis": {
+      "pass1": 0.5,
+      "correct": 1,
+      "total": 2
+    },
+    "Safety/Policy Evaluation": {
+      "pass1": 0.3333,
+      "correct": 1,
+      "total": 3
+    },
+    "Engine Health Analysis": {
+      "pass1": 0.9,
+      "correct": 9,
+      "total": 10
+    }
+  },
+  "avg_steps": 6.6,
+  "avg_total_tokens": 30970,
+  "avg_time_s": 74.18
+}
+
+==========================================
+Running reactxen + mistralai/mistral-medium-2505
+==========================================
+Done. Tail of log:
+    "Cost-Benefit Analysis": {
+      "pass1": 1.0,
+      "correct": 2,
+      "total": 2
+    },
+    "Safety/Policy Evaluation": {
+      "pass1": 0.6667,
+      "correct": 2,
+      "total": 3
+    },
+    "Engine Health Analysis": {
+      "pass1": 0.5,
+      "correct": 5,
+      "total": 10
+    }
+  },
+  "avg_steps": 7.56,
+  "avg_total_tokens": 36840,
+  "avg_time_s": 134.07
+}
+
+==========================================
+Running reactxen + meta-llama/llama-3-3-70b-instruct
+==========================================

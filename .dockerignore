@@ -1,0 +1,80 @@
+# ===========================================================================
+# Docker build-context exclusions for the PHMForge image.
+# ===========================================================================
+
+# Git internals — already huge with LFS and submodule history
+.git
+.github
+**/.git
+**/.github
+
+# Local Python venvs
+.venv
+**/.venv
+venv
+
+# Cache and lint output
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/.pytest_cache
+**/node_modules
+**/.mypy_cache
+**/.ruff_cache
+
+# Editor / IDE / dev config
+.idea
+.vscode
+.devcontainer
+**/*.swp
+**/*.swo
+
+# Secrets / credentials (never in images)
+**/.env
+**/.env.*
+**/credentials.json
+**/credentials.template.json
+
+# Logs
+*.log
+**/*.log
+
+# Don't copy the paper folder (it lives outside the repo)
+Neurips_PHMForge
+
+# Don't copy AssetOpsBench (it has its own .git and is a separate project)
+AssetOpsBench
+
+# ===========================================================================
+# CRITICAL: PDMBench training data is 54 GB. Do NOT include in image —
+# mount at runtime via -v $(pwd)/PDMBench_Data_Directory:/data instead.
+# We only keep the small CMAPSS files (FD001-FD004 train/test/RUL.txt) inside
+# the image since they are needed for the heuristic predict_rul tool.
+# ===========================================================================
+ReActXen/src/reactxen/demo/intent_implementation_demo/multi_agent_implementation_demo/PDMBench_Data_Directory/submission096/*.csv
+ReActXen/src/reactxen/demo/intent_implementation_demo/multi_agent_implementation_demo/PDMBench_Data_Directory/submission096/*.parquet
+ReActXen/src/reactxen/demo/intent_implementation_demo/multi_agent_implementation_demo/PDMBench_Data_Directory/submission096/EngineMTQA
+ReActXen/src/reactxen/demo/intent_implementation_demo/downloaded_datasets
+ReActXen/src/reactxen/demo/intent_implementation_demo/shared
+
+# Big data files in src/data (downloadable from HuggingFace)
+ReActXen/src/data/**/*.csv
+ReActXen/src/data/**/*.parquet
+ReActXen/src/data/**/*.arrow
+
+# Other heavy folders not needed in image
+ReActXen/src/reactxen/demo/intent_implementation_demo/IBM Research Paper Catalogue Reference
+ReActXen/src/reactxen/demo/intent_implementation_demo/outputs
+ReActXen/src/reactxen/demo/intent_implementation_demo/models
+ReActXen/src/reactxen/demo/intent_implementation_demo/sample_scenarios
+ReActXen/src/reactxen/demo/intent_implementation_demo/scenario
+ReActXen/src/reactxen/demo/intent_implementation_demo/results/paper_table4_runs/logs
+notebooks
+
+# Build artifacts
+**/dist
+**/build
+**/*.egg-info
+
+# Project-local Claude state
+.claude

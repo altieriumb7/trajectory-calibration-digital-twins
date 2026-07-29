@@ -1,0 +1,69 @@
+# PHMForge — docker-compose for one-command local setup
+#
+# Profiles:
+#   - default (no profile): runs verify_servers.py once and exits
+#   - dashboard:           runs the Streamlit dashboard at localhost:8501
+#   - benchmark:           runs a 5-scenario Pass@1 sweep (requires WatsonX env)
+#
+# Usage:
+#   docker compose up                       # verify only
+#   docker compose --profile dashboard up   # launch dashboard
+#   docker compose --profile benchmark up   # run benchmark
+#
+# Place WatsonX credentials in a .env file alongside this docker-compose.yml:
+#   WATSONX_APIKEY=...
+#   WATSONX_URL=https://us-south.ml.cloud.ibm.com
+#   WATSONX_PROJECT_ID=...
+
+services:
+  verify:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: phmforge:latest
+    container_name: phmforge-verify
+    command:
+      - .venv/bin/python
+      - mcp_servers/verify_servers.py
+      - --quick
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: phmforge:latest
+    container_name: phmforge-dashboard
+    profiles: [dashboard]
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./ReActXen/src/reactxen/demo/intent_implementation_demo/results:/app/demo/results
+    command:
+      - .venv/bin/streamlit
+      - run
+      - frontend/app.py
+      - --server.address=0.0.0.0
+      - --server.port=8501
+
+  benchmark:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: phmforge:latest
+    container_name: phmforge-benchmark
+    profiles: [benchmark]
+    environment:
+      - WATSONX_APIKEY
+      - WATSONX_URL
+      - WATSONX_PROJECT_ID
+      - LITELLM_API_KEY
+      - LITELLM_BASE_URL
+    volumes:
+      - ./ReActXen/src/reactxen/demo/intent_implementation_demo/results:/app/demo/results
+      - ./ReActXen/src/reactxen/demo/intent_implementation_demo/multi_agent_implementation_demo/PDMBench_Data_Directory:/app/demo/multi_agent_implementation_demo/PDMBench_Data_Directory
+    command:
+      - .venv/bin/python
+      - benchmark_pass1.py
+      - --framework=react
+      - --model=ibm/granite-4-h-small
+      - --limit=5

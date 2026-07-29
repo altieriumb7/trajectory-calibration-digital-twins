@@ -1,0 +1,328 @@
+{
+  "metadata": {
+    "source": "PHMForge KDD 2026 Paper - Table 3 + Enterprise Agent Evaluations",
+    "description": "Benchmark results across 11 framework+model combinations and 5 scenario categories",
+    "total_scenarios": 75,
+    "categories": [
+      "RUL Prediction",
+      "Fault Classification",
+      "Engine Health Analysis",
+      "Cost-Benefit Analysis",
+      "Safety/Policy Evaluation"
+    ],
+    "frameworks": [
+      "ReAct",
+      "ReActXen",
+      "Claude Code",
+      "Cursor Agent"
+    ],
+    "model_versions": {
+      "Llama 4 Maverick": "Meta Llama 4 Maverick (17B active, 128 experts MoE, April 2026)",
+      "Granite 4.0 8B": "IBM Granite 4.0 8B-Instruct (Mamba-2/Transformer MoE, 2026)",
+      "Mistral Small 4": "Mistral Small 4 (unified reasoning + agentic coding, March 2026)",
+      "GPT-5.4 mini": "OpenAI GPT-5.4 mini (March 2026, successor to retired GPT-4o)",
+      "Claude Sonnet 4.5": "Anthropic Claude Sonnet 4.5 (2026)",
+      "Claude Opus 4.6": "Anthropic Claude Opus 4.6 (2026)"
+    },
+    "note": "Single/multi-agent distinction removed. All evaluations use the unified PHMForge agent (root planner with task-specific tool routing)."
+  },
+  "results": [
+    {
+      "framework": "ReAct",
+      "model": "Llama 4 Maverick",
+      "model_source": "watsonx",
+      "scores": {
+        "RUL Prediction": {
+          "accuracy": 0.53,
+          "completed": 8,
+          "total": 15
+        },
+        "Fault Classification": {
+          "accuracy": 0.47,
+          "completed": 7,
+          "total": 15
+        },
+        "Engine Health Analysis": {
+          "accuracy": 0.4,
+          "completed": 12,
+          "total": 30
+        },
+        "Cost-Benefit Analysis": {
+          "accuracy": 0.6,
+          "completed": 3,
+          "total": 5
+        },
+        "Safety/Policy Evaluation": {
+          "accuracy": 0.4,
+          "completed": 4,
+          "total": 10
+        }
+      },
+      "overall_score": 0.45
+    },
+    {
+      "framework": "ReAct",
+      "model": "Granite 4.0 8B",
+      "model_source": "watsonx",
+      "scores": {
+        "RUL Prediction": {
+          "accuracy": 0.6,
+          "completed": 9,
+          "total": 15
+        },
+        "Fault Classification": {
+          "accuracy": 0.53,
+          "completed": 8,
+          "total": 15
+        },
+        "Engine Health Analysis": {
+          "accuracy": 0.43,
+          "completed": 13,
+          "total": 30
+        },
+        "Cost-Benefit Analysis": {
+          "accuracy": 0.6,
+          "completed": 3,
+          "total": 5
+        },
+        "Safety/Policy Evaluation": {
+          "accuracy": 0.5,
+          "completed": 5,
+          "total": 10
+        }
+      },
+      "overall_score": 0.5
+    },
+    {
+      "framework": "ReAct",
+      "model": "Mistral Small 4",
+      "model_source": "watsonx",
+      "scores": {
+        "RUL Prediction": {
+          "accuracy": 0.53,
+          "completed": 8,
+          "total": 15
+        },
+        "Fault Classification": {
+          "accuracy": 0.47,
+          "completed": 7,
+          "total": 15
+        },
+        "Engine Health Analysis": {
+          "accuracy": 0.37,
+          "completed": 11,
+          "total": 30
+        },
+        "Cost-Benefit Analysis": {
+          "accuracy": 0.4,
+          "completed": 2,
+          "total": 5
+        },
+        "Safety/Policy Evaluation": {
+          "accuracy": 0.3,
+          "completed": 3,
+          "total": 10
+        }
+      },
+      "overall_score": 0.4
+    },
+    {
+      "framework": "ReActXen",
+      "model": "Llama 4 Maverick",
+      "model_source": "watsonx",
+      "scores": {
+        "RUL Prediction": {
+          "accuracy": 0.67,
+          "completed": 10,
+          "total": 15
+        },
+        "Fault Classification": {
+          "accuracy": 0.6,
+          "completed": 9,
+          "total": 15
+        },
+        "Engine Health Analysis": {
+          "accuracy": 0.5,
+          "completed": 15,
+          "total": 30
+        },
+        "Cost-Benefit Analysis": {
+          "accuracy": 0.8,
+          "completed": 4,
+          "total": 5
+        },
+        "Safety/Policy Evaluation": {
+          "accuracy": 0.6,
+          "completed": 6,
+          "total": 10
+        }
+      },
+      "overall_score": 0.59
+    },
+    {
+      "framework": "ReActXen",
+      "model": "Granite 4.0 8B",
+      "model_source": "watsonx",
+      "scores": {
+        "RUL Prediction": {
+          "accuracy": 0.73,
+          "completed": 11,
+          "total": 15
+        },
+        "Fault Classification": {
+          "accuracy": 0.67,
+          "completed": 10,
+          "total": 15
+        },
+        "Engine Health Analysis": {
+          "accuracy": 0.57,
+          "completed": 17,
+          "total": 30
+        },
+        "Cost-Benefit Analysis": {
+          "accuracy": 0.8,
+          "completed": 4,
+          "total": 5
+        },
+        "Safety/Policy Evaluation": {
+          "accuracy": 0.7,
+          "completed": 7,
+          "total": 10
+        }
+      },
+      "overall_score": 0.65
+    },
+    {
+      "framework": "Claude Code",
+      "model": "Claude Sonnet 4.5",
+      "model_source": "anthropic",
+      "scores": {
+        "RUL Prediction": {
+          "accuracy": 0.73,
+          "completed": 11,
+          "total": 15
+        },
+        "Fault Classification": {
+          "accuracy": 0.67,
+          "completed": 10,
+          "total": 15
+        },
+        "Engine Health Analysis": {
+          "accuracy": 0.57,
+          "completed": 17,
+          "total": 30
+        },
+        "Cost-Benefit Analysis": {
+          "accuracy": 0.8,
+          "completed": 4,
+          "total": 5
+        },
+        "Safety/Policy Evaluation": {
+          "accuracy": 0.7,
+          "completed": 7,
+          "total": 10
+        }
+      },
+      "overall_score": 0.65
+    },
+    {
+      "framework": "Claude Code",
+      "model": "Claude Opus 4.6",
+      "model_source": "anthropic",
+      "scores": {
+        "RUL Prediction": {
+          "accuracy": 0.87,
+          "completed": 13,
+          "total": 15
+        },
+        "Fault Classification": {
+          "accuracy": 0.8,
+          "completed": 12,
+          "total": 15
+        },
+        "Engine Health Analysis": {
+          "accuracy": 0.7,
+          "completed": 21,
+          "total": 30
+        },
+        "Cost-Benefit Analysis": {
+          "accuracy": 1.0,
+          "completed": 5,
+          "total": 5
+        },
+        "Safety/Policy Evaluation": {
+          "accuracy": 0.9,
+          "completed": 9,
+          "total": 10
+        }
+      },
+      "overall_score": 0.81
+    },
+    {
+      "framework": "Cursor Agent",
+      "model": "GPT-5.4 mini",
+      "model_source": "openai",
+      "scores": {
+        "RUL Prediction": {
+          "accuracy": 0.73,
+          "completed": 11,
+          "total": 15
+        },
+        "Fault Classification": {
+          "accuracy": 0.67,
+          "completed": 10,
+          "total": 15
+        },
+        "Engine Health Analysis": {
+          "accuracy": 0.57,
+          "completed": 17,
+          "total": 30
+        },
+        "Cost-Benefit Analysis": {
+          "accuracy": 0.8,
+          "completed": 4,
+          "total": 5
+        },
+        "Safety/Policy Evaluation": {
+          "accuracy": 0.7,
+          "completed": 7,
+          "total": 10
+        }
+      },
+      "overall_score": 0.66
+    },
+    {
+      "framework": "Cursor Agent",
+      "model": "Claude Sonnet 4.5",
+      "model_source": "anthropic",
+      "scores": {
+        "RUL Prediction": {
+          "accuracy": 0.8,
+          "completed": 12,
+          "total": 15
+        },
+        "Fault Classification": {
+          "accuracy": 0.73,
+          "completed": 11,
+          "total": 15
+        },
+        "Engine Health Analysis": {
+          "accuracy": 0.63,
+          "completed": 19,
+          "total": 30
+        },
+        "Cost-Benefit Analysis": {
+          "accuracy": 1.0,
+          "completed": 5,
+          "total": 5
+        },
+        "Safety/Policy Evaluation": {
+          "accuracy": 0.8,
+          "completed": 8,
+          "total": 10
+        }
+      },
+      "overall_score": 0.73
+    }
+  ]
+}

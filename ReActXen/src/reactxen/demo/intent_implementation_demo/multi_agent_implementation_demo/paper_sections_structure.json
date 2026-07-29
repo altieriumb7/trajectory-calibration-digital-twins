@@ -1,0 +1,272 @@
+{
+  "paper_title": "Agentic Predictive Maintenance: A Multi-Agent Framework for PHM Benchmark Tasks",
+  "main_sections": [
+    {
+      "section_number": 1,
+      "section_name": "Introduction",
+      "description": "Introduce the problem, motivation, and positioning within PHM literature",
+      "subsections": [
+        {
+          "subsection_name": "Contributions",
+          "description": "List main contributions in scientific narrative form (no bullets in final version)"
+        }
+      ],
+      "storytelling_notes": "Set the stage for why agentic systems matter in PHM; reference established PHM categories from literature"
+    },
+    {
+      "section_number": 2,
+      "section_name": "Related Work",
+      "description": "Comprehensive literature review covering benchmarks, evaluation frameworks, agentic systems, and language agent frameworks",
+      "subsections": [
+        {
+          "subsection_name": "Scenario and Dataset Creation Benchmarks",
+          "description": "ITFormer, MLE-Bench, PHM-Bench - focus on how they created scenarios and datasets"
+        },
+        {
+          "subsection_name": "Evaluation Frameworks for PHM",
+          "description": "PDMBench, PHM-Bench evaluation approaches"
+        },
+        {
+          "subsection_name": "Agentic System Benchmarks",
+          "description": "MCP-Bench, MCP Universe, MLE-Bench from agentic perspective"
+        },
+        {
+          "subsection_name": "Language Agents and Frameworks",
+          "description": "ReAct, ReActXen frameworks"
+        },
+        {
+          "subsection_name": "Gaps and Our Contributions",
+          "description": "Comparison table and unique contributions"
+        }
+      ],
+      "storytelling_notes": "Follow other papers' style for related work; use comparison tables; explain how each work's methodology influenced your approach"
+    },
+    {
+      "section_number": 3,
+      "section_name": "Methodology",
+      "description": "Overall system architecture and agent design",
+      "subsections": [
+        {
+          "subsection_name": "System Architecture",
+          "description": "Multi-agent architecture with specialized sub-agents"
+        },
+        {
+          "subsection_name": "Agent Design",
+          "description": "ReAct paradigm, dynamic tool creation, heuristic learning"
+        },
+        {
+          "subsection_name": "Additional methodological components",
+          "description": "Reflector agent, learning agent, performance optimizations"
+        }
+      ],
+      "storytelling_notes": "Keep technical but accessible; explain WHY these design choices matter for PHM"
+    },
+    {
+      "section_number": 4,
+      "section_name": "PHM Benchmark: Scenario Design and Dataset Curation",
+      "description": "THE MAIN CONTRIBUTION SECTION - Explain the systematic process to arrive at 75 scenarios. Focus on PROCESS not destination. This is where we tell the scientific story of scenario creation.",
+      "subsections": [
+        {
+          "subsection_number": "4.1",
+          "subsection_name": "Scenario Categorization: Mapping to PHM Core Tasks",
+          "description": "Explain the 4 PHM categories from literature (Condition Monitoring, Fault Diagnosis, Fault & RUL Prediction, Maintenance Scheme) and how your 5 sections map to them",
+          "key_content": [
+            "Start with PHM literature establishing 4 core categories (reference PHM-Bench paper)",
+            "Show diagram/figure mapping the 4 categories as superset",
+            "Explain your 5 sections: Engine Health Analysis → Condition Monitoring; Fault Classification → Fault Diagnosis; RUL → Fault & RUL Prediction; Cost-Benefit + Safety → Maintenance Scheme",
+            "Justify WHY these 4 categories vs other knowledge-based approaches",
+            "Identify organizational stakeholder levels: Executive level, Site engineering level, Asset management level",
+            "Explain who asks which questions and why (personas)"
+          ],
+          "storytelling_notes": "This is scientific justification for your categorization choices. Reference PHM-Bench figure. Explain the decision-making hierarchy in industrial organizations."
+        },
+        {
+          "subsection_number": "4.2",
+          "subsection_name": "Dataset Selection and Curation Protocol",
+          "description": "Explain the filtering process from broad dataset landscape to focused, curated collection",
+          "key_content": [
+            "Reference MLE-Bench and IndustryEQA's dataset curation approaches",
+            "Start with broad landscape: all available PHM datasets",
+            "Progressive narrowing: criteria for selection (ground truth availability, multi-asset coverage, task alignment)",
+            "Final curated set: 18 datasets across 4 equipment types",
+            "Dataset-task matching protocol: which datasets for which scenarios and why",
+            "Data quality considerations and preprocessing requirements"
+          ],
+          "storytelling_notes": "Follow MLE-Bench's narrative: started broad, progressively narrowed. Explain the PROTOCOL followed, not just the result."
+        },
+        {
+          "subsection_number": "4.3",
+          "subsection_name": "Scenario Generation Pipeline: SME-Driven Query Formulation",
+          "description": "Explain HOW scenarios were created through SME involvement, what rules they followed, what makes queries unique",
+          "key_content": [
+            "Reference IndustryEQA's 'Human Filtering and Reannotation' methodology",
+            "SME involvement: who were the SMEs, what expertise they brought",
+            "Query formulation rules: guidelines SMEs followed when drafting scenarios",
+            "Domain-specific terminology: explain why certain terms are used (HPC, MAE, CMAPSS, FAA, etc.)",
+            "Unique characteristics of domain-specific questions",
+            "Query types: open-ended vs MCQ (close-ended), explain when each is appropriate",
+            "Data provision modes: embedded data vs agent-discovered data - WHY this distinction matters (2 personas explanation)",
+            "Multi-asset scenarios: agents must narrow down which asset needs attention",
+            "Problem description: what information is needed for each task type (RUL, fault classification, etc.)",
+            "Explain uniqueness: what makes PHM queries different from general ML queries"
+          ],
+          "storytelling_notes": "This is where you explain the CRAFT of scenario creation. Reference 'query formulation' terminology from benchmark papers. Emphasize human expertise and domain knowledge."
+        },
+        {
+          "subsection_number": "4.4",
+          "subsection_name": "Ground Truth Preparation and Validation",
+          "description": "Explain the PROCESS of preparing ground truth for different scenario types",
+          "key_content": [
+            "Different approaches for different task types",
+            "RUL scenarios: extracting actual ground truth from datasets (CMAPSS RUL files, FEMTO percentages)",
+            "Fault classification: validating fault labels, handling different taxonomies",
+            "Cost-benefit: establishing cost models and realistic ranges",
+            "Safety/policy: referencing regulatory standards (OSHA, FAA, IEC, NEMA)",
+            "Engine health: leveraging EngineMTQA validated answers",
+            "Challenges encountered and how they were resolved",
+            "Quality assurance: SME review of ground truth accuracy"
+          ],
+          "storytelling_notes": "Explain HOW ground truth was prepared, not just WHAT it is. Show the systematic process."
+        },
+        {
+          "subsection_number": "4.5",
+          "subsection_name": "Evaluation Criteria and Output Templates",
+          "description": "Define how scenarios are evaluated and what constitutes success",
+          "key_content": [
+            "Structured output template design",
+            "Evaluation dimensions: completeness, correctness, efficiency",
+            "Success criteria: why 80% completeness + ground truth verification",
+            "Different evaluation approaches for different task types",
+            "Deterministic vs subjective evaluation trade-offs"
+          ],
+          "storytelling_notes": "Explain the reasoning behind evaluation design choices"
+        },
+        {
+          "subsection_number": "4.6",
+          "subsection_name": "Scenario Statistics and Distribution Analysis",
+          "description": "Present the final scenario distribution with analysis and justification",
+          "key_content": [
+            "Distribution across 4 PHM categories (with mapping to your 5 sections)",
+            "Distribution across 18 datasets",
+            "Distribution across asset classes (bearings, motors, gearboxes, aircraft engines)",
+            "Query characteristics: open-ended vs close-ended percentages",
+            "Data provision modes: embedded vs discovery percentages",
+            "Multi-asset vs single-asset percentages",
+            "Organizational level mapping: which scenarios for which stakeholders",
+            "Justification for distribution choices (why 40% engine health, 20% RUL, etc.)",
+            "Tables showing comprehensive breakdown",
+            "Person-hours invested in scenario creation (shows rigor and quality)"
+          ],
+          "storytelling_notes": "Tables are critical here. Show attractive visualizations. Justify the distributions - explain WHY you allocated scenarios this way."
+        }
+      ],
+      "overall_storytelling_approach": "This entire section tells the story of HOW you built the benchmark. It's not about the destination (75 scenarios), it's about the JOURNEY and PROCESS. Reference similar methodologies from IndustryEQA (human filtering), MLE-Bench (progressive curation), PHM-Bench (PHM categories). Use scientific terminology: protocol, pipeline, curation, formulation. NO BULLETS in final version - everything is narrative prose.",
+      "visual_elements_needed": [
+        "Figure: 4 PHM categories with your 5 sections mapped as subsets (make it attractive)",
+        "Figure: Dataset selection funnel (broad → narrow)",
+        "Figure: Scenario generation pipeline flowchart",
+        "Table: Scenario distribution by PHM category",
+        "Table: Dataset distribution",
+        "Table: Query characteristics breakdown",
+        "Table: Organizational stakeholder mapping"
+      ]
+    },
+    {
+      "section_number": 5,
+      "section_name": "Experimental Evaluation",
+      "description": "Present results from running agents on the benchmark",
+      "subsections": [
+        {
+          "subsection_name": "Experimental Setup",
+          "description": "Baselines, metrics, evaluation protocol"
+        },
+        {
+          "subsection_name": "Research Questions",
+          "description": "RQ1: How do agentic systems perform on PHM tasks? RQ2: Single-agent vs multi-agent comparison (this is the leaderboard aspect)",
+          "storytelling_notes": "Frame results as answering specific research questions. RQ2 addresses the multi-agent vs single-agent comparison mentioned in feedback."
+        },
+        {
+          "subsection_name": "Results and Analysis",
+          "description": "Detailed results for each scenario category",
+          "subsubsections": [
+            "Success Criteria and Scoring",
+            "RUL Prediction Results",
+            "Fault Classification Results",
+            "Cost-Benefit Analysis Results",
+            "Safety/Policy Evaluation Results",
+            "Engine Health Analysis Results",
+            "Multi-LLM Comparison (leaderboard aspect)",
+            "Single-Agent vs Multi-Agent Comparison (RQ2)"
+          ]
+        },
+        {
+          "subsection_name": "Implementation Challenges and Solutions",
+          "description": "Technical challenges encountered and how they were addressed"
+        }
+      ],
+      "storytelling_notes": "Results section should reference the research questions. The leaderboard aspect comes from comparing different LLM backends and agent architectures."
+    },
+    {
+      "section_number": 6,
+      "section_name": "Discussion",
+      "description": "Analysis of results, advantages, limitations, future work",
+      "subsections": [
+        {
+          "subsection_name": "Advantages of Agentic Approach",
+          "description": "Why agentic systems work well for PHM"
+        },
+        {
+          "subsection_name": "Limitations",
+          "description": "Current limitations and constraints"
+        },
+        {
+          "subsection_name": "Future Work",
+          "description": "Promising directions for extension"
+        }
+      ],
+      "storytelling_notes": "Honest discussion of what works, what doesn't, and why"
+    },
+    {
+      "section_number": 7,
+      "section_name": "Conclusion",
+      "description": "Summarize contributions and impact",
+      "storytelling_notes": "Emphasize the benchmark contribution and the systematic process for creating it"
+    }
+  ],
+  "key_feedback_addressed": {
+    "scenario_categorization": "Section 4.1 maps 5 sections to 4 PHM literature categories (Condition Monitoring, Fault Diagnosis, Fault & RUL Prediction, Maintenance Scheme) with Cost+Safety falling into Maintenance Scheme",
+    "process_not_destination": "Entire Section 4 focuses on HOW scenarios were created, not just WHAT the final set is. Uses terms like protocol, pipeline, curation, formulation.",
+    "reference_papers": "References IndustryEQA (human filtering), MLE-Bench (progressive curation), PHM-Bench (PHM categories) throughout Section 4",
+    "no_bullets": "Final paper will use narrative prose throughout, not bullet lists",
+    "scientific_storytelling": "Each subsection tells part of the story: categorization → dataset selection → query formulation → ground truth → evaluation → statistics",
+    "sme_involvement": "Section 4.3 explicitly discusses SME roles, query formulation rules, domain terminology",
+    "stakeholder_levels": "Section 4.1 identifies Executive, Site Engineering, and Asset Management levels and who asks which questions",
+    "query_types": "Section 4.3 explains open-ended vs MCQ, embedded data vs discovered data, multi-asset vs single-asset",
+    "ground_truth_process": "Section 4.4 explains HOW ground truth was prepared for each task type",
+    "scenario_statistics": "Section 4.6 provides comprehensive distribution analysis with justifications",
+    "rq2_leaderboard": "Section 5.2 includes RQ2 on single-agent vs multi-agent, Section 5.3 includes multi-LLM comparison (leaderboard)",
+    "attractive_diagrams": "visual_elements_needed specifies 7 figures/tables to make attractive"
+  },
+  "writing_guidelines": {
+    "style": "Scientific narrative prose, no bullet points in final version",
+    "terminology": "Use benchmark paper terminology: protocol, pipeline, curation, formulation, progressive narrowing",
+    "references": "Cite IndustryEQA, MLE-Bench, PHM-Bench methodologies where applicable",
+    "emphasis": "Focus on PROCESS and HOW, not just outcomes and WHAT",
+    "stakeholders": "Always consider who asks the question and why",
+    "justification": "Explain WHY choices were made, not just WHAT choices were made"
+  },
+  "section_4_expanded_outline": {
+    "title": "Section 4 is THE KEY CONTRIBUTION - The Benchmark Creation Story",
+    "narrative_flow": "Literature establishes 4 PHM categories → We adopt and map our work to them → We start with broad dataset landscape → Progressive curation to 18 datasets → SMEs formulate queries following specific rules → Ground truth prepared systematically → Evaluation criteria defined → Final statistics analyzed",
+    "key_message": "We followed a rigorous, systematic, expert-driven process to create a high-quality benchmark. Every step had a protocol, every choice had justification, every scenario was validated.",
+    "comparison_to_existing": "Like MLE-Bench (handcrafted, progressive curation) + IndustryEQA (SME validation, human filtering) + PHM-Bench (PHM-specific categories) but uniquely combining all three approaches"
+  },
+  "metadata": {
+    "total_sections": 7,
+    "total_subsections_in_section_4": 6,
+    "estimated_page_length_section_4": "8-10 pages (this is the heart of the paper)",
+    "visual_elements": 7,
+    "created_date": "2025-12-28",
+    "purpose": "Structure for transferring content from research_paper.tex to kdd_style_research_paper.tex with ACM conference formatting"
+  }
+}

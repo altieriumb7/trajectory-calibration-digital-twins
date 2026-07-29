@@ -1,0 +1,26 @@
+{
+  "ibm/granite-4-h-small": {
+    "completed": true,
+    "count": 15
+  },
+  "meta-llama/llama-3-3-70b-instruct": {
+    "completed": true,
+    "count": 6
+  },
+  "meta-llama/llama-4-maverick-17b-128e-instruct-fp8": {
+    "completed": true,
+    "count": 0
+  },
+  "mistralai/mistral-medium-2505": {
+    "completed": true,
+    "count": 15
+  },
+  "mistralai/mistral-small-3-1-24b-instruct-2503": {
+    "completed": true,
+    "count": 15
+  },
+  "openai/gpt-oss-120b": {
+    "completed": true,
+    "count": 15
+  }
+}
