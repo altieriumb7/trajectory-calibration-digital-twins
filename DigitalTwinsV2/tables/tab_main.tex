@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\caption{Out-of-fold failure prediction on PHMForge ($n=167$ trajectories, scenario-grouped 5-fold CV). Brackets are 95\% bootstrap CIs; $p$ is a label-permutation test against AUROC${=}0.5$.}
+\label{tab:main}
+\footnotesize
+\begin{tabular}{lccc}
+\toprule
+\textbf{Signal set} & \textbf{AUROC} & \textbf{ECE} & $\bm{p}$ \\
+\midrule
+Verbalized confidence (raw) & 0.532 [0.507, 0.562] & 0.204 & 0.022 \\
+Synthetic token features [RF] & 0.444 [0.348, 0.531] & 0.210 & 0.889 \\
+V1 feature vector f(tau) [RF] & 0.590 [0.504, 0.674] & 0.133 & 0.025 \\
+MCP error ratio only [LR] & 0.477 [0.388, 0.570] & 0.106 & 0.702 \\
+Measured execution telemetry [LR] & 0.580 [0.493, 0.667] & 0.115 & 0.043 \\
+Measured execution telemetry [RF] & 0.880 [0.829, 0.925] & 0.070 & 0.000 \\
+\bottomrule
+\end{tabular}
+\end{table}
