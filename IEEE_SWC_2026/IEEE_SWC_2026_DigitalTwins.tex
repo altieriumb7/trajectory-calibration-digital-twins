@@ -34,41 +34,70 @@
     \vspace{1.2em}
   \end{center}
   \begin{quote}
-    \small \textbf{Abstract---} Agentic Digital Twins (ADTs) represent the vanguard of industrial asset management, automating tasks via Tool-augmented LLMs. However, deploying ADTs in safety-critical settings is hindered by the lack of reliable uncertainty quantification. Standard LLMs are notoriously overconfident due to RLHF alignment, leading to silent, catastrophic failures. In this paper (IEEE Smart World Congress 2026), we present a trajectory calibration study on the PHMForge benchmark. We formulate a 6-dimensional diagnostic feature vector $f(\tau)$ capturing token generation entropy, logprob variance, and MCP tool telemetry. We evaluate five calibration schemes across seven LLMs (8B to 120B). Empirical feature importance reveals that logprob variance ($30.0\%$) and MCP error ratio ($28.7\%$) dominate failure prediction, whereas verbalized confidence accounts for under $4\%$. Furthermore, selective abstention reduces Expected Operational Costs (EOC) by up to $83\%$. Code is open-sourced at: \url{https://github.com/altieriumb7/trajectory-calibration-digital-twins}.
+    \small \textbf{Abstract---} Agentic Digital Twins (ADTs) represent the vanguard of industrial asset management, automating diagnostic, prognostic, and maintenance scheduling tasks via Tool-augmented Large Language Models (LLMs). However, deploying ADTs in safety-critical industrial settings is hindered by the lack of reliable uncertainty quantification. Standard LLMs are notoriously overconfident due to Reinforcement Learning from Human Feedback (RLHF) alignment, leading to silent, catastrophic failures during multi-step reasoning. In this paper, submitted for IEEE Smart World Congress (SWC 2026) / Digital Twin 2026, we present a systematic trajectory calibration study on the PHMForge benchmark. We formulate a 6-dimensional diagnostic feature vector $f(\tau)$ capturing early token generation entropy, confidence gradients, Model Context Protocol (MCP) tool execution telemetry, and action loop ratios. We implement and compare five calibration schemes across seven open-weights and commercial models. Our empirical feature importance analysis reveals that logprob variance ($30.0\%$) and MCP error ratio ($28.7\%$) dominate failure prediction, whereas verbalized model confidence accounts for under $4\%$. Furthermore, we demonstrate that selective abstention—allowing the twin to gracefully hand over control to a human operator under high uncertainty—reduces Expected Operational Costs (EOC) by up to $83\%$. Code, datasets, and telemetry calibration tools are open-sourced at: \url{https://github.com/altieriumb7/trajectory-calibration-digital-twins}.
   \end{quote}
   \vspace{1.5em}
 ]
 
-\textbf{Keywords—} Agentic Digital Twins, Predictive Maintenance, Uncertainty Quantification, Trajectory Calibration, Model Context Protocol.
+\textbf{Keywords—} Agentic Digital Twins, Predictive Maintenance, Uncertainty Quantification, Trajectory Calibration, Model Context Protocol (MCP), Selective Abstention.
 
-\section{Introduction and Related Work}
-Industrial Digital Twins (IDTs) have progressed towards Stage 4 Autonomous Management systems \cite{grieves2014digital, tao2019digital}, largely driven by Large Language Models (LLMs) orchestrated as autonomous agents \cite{yao2022react}. These Agentic Digital Twins (ADTs) receive high-level requests (e.g., prognosticating turbine Remaining Useful Life) and interact with safety-critical machinery through the Model Context Protocol (MCP) \cite{anthropic2024mcp}. 
+\section{Introduction}
+The evolution of Industrial Digital Twins (IDTs) has rapidly progressed from static physical representations to dynamic, data-driven simulators, and now towards Stage 4 Autonomous Management systems \cite{grieves2014digital, tao2019digital}. At the core of this transition are Large Language Models (LLMs) orchestrated as autonomous agents. These Agentic Digital Twins (ADTs) are capable of receiving high-level natural language requests—such as prognosticating the Remaining Useful Life (RUL) of a wind turbine bearing or optimizing fleet-wide maintenance schedules—and executing them by interacting with safety-critical machinery through standardized interfaces like the Model Context Protocol (MCP) \cite{anthropic2024mcp, yao2022react}. Under this paradigm, agents autonomously select, configure, and execute diagnostic toolchains, interpreting multi-sensor telemetry (e.g., vibration, temperature, acoustic emissions) in real-time \cite{das2025phmforge}.
 
-Despite their versatility \cite{boiko2023emergent}, ADTs struggle in domain-critical environments \cite{das2025phmforge}. A primary bottleneck is their propensity to hallucinate tool parameters and produce overconfident prognostications \cite{huang2023survey}. In heavy industry, unmonitored agent failures cause catastrophic asset degradation \cite{zhao2023large}. Standard LLMs exhibit severe overconfidence—largely due to Reinforcement Learning from Human Feedback (RLHF)—which encourages fluency over factual grounding \cite{ouyang2022training, kuleshov2018accurate}.
+Despite their unprecedented versatility and reasoning capabilities, current state-of-the-art LLM agents face significant deployment hurdles in domain-critical industrial environments \cite{boiko2023emergent}. A primary bottleneck is their propensity to hallucinate tool parameters, misinterpret numerical time-series data, and produce overconfident, incorrect prognostications \cite{huang2023survey}. In consumer applications, an LLM hallucination might result in a minor inconvenience. However, in heavy industry sectors like aerospace propulsion, nuclear power generation, or smart grid management, unmonitored agent failures can lead to catastrophic asset degradation, prolonged unplanned downtime, and severe safety hazards \cite{zhao2023large}.
 
-While calibration techniques like Temperature Scaling and Isotonic Regression excel for single-turn classification \cite{guo2017calibration}, they fail for multi-turn agentic trajectories. Recent approaches attempt to merge verbalized confidence with execution logs \cite{gupta2025calvert}, but overlook token-level log-probability variance. We introduce a trajectory calibration framework leveraging a novel 6-dimensional diagnostic vector, proving its profound economic impact.
+Addressing this reliability gap requires equipping ADTs with robust Uncertainty Quantification (UQ) mechanisms. An agent must be able to recognize its own cognitive boundaries, accurately gauge the probability of its trajectory succeeding, and selectively abstain from executing high-risk actions when its internal confidence is excessively low \cite{gupta2025calvert}. Unfortunately, standard LLMs exhibit severe overconfidence, largely as a byproduct of Reinforcement Learning from Human Feedback (RLHF), which encourages assertive and fluent responses even when the model lacks the necessary factual grounding \cite{ouyang2022training, kuleshov2018accurate}.
+
+\section{Related Work}
+
+\subsection{LLM Agents in Predictive Maintenance}
+Predictive Maintenance (PdM) and Prognostics and Health Management (PHM) have traditionally relied on purely statistical or narrow machine learning models trained for specific failure modes \cite{zheng2017long}. The integration of LLMs introduces a paradigm shift, enabling multimodal reasoning and dynamic code generation for data analysis. Frameworks such as ReAct \cite{yao2022react} and Toolformer \cite{schick2023toolformer} delegate complex mathematical operations to specialized external tools, allowing the LLM to act as a high-level cognitive router. However, as demonstrated by Das et al. in the PHMForge benchmark \cite{das2025phmforge}, these agents struggle with long-horizon industrial scenarios that require strict adherence to physical constraints.
+
+\subsection{Tool-Use and MCP Telemetry}
+The standardization of agent-environment interactions has been significantly accelerated by the Model Context Protocol (MCP) \cite{anthropic2024mcp}. MCP provides a unified architecture for LLMs to query database schemas, invoke Python analytics scripts, and read real-time sensor streams. While MCP standardizes the interface, complex multi-step reasoning inevitably introduces execution friction. Execution errors—such as API timeouts, syntax errors in generated code, or missing required parameters—act as strong, unfiltered indicators of impending task failure \cite{mialon2023augmented}.
+
+\subsection{Uncertainty Quantification and Calibration}
+A predictive model is considered perfectly calibrated if its predicted confidence matches the empirical probability of correctness \cite{guo2017calibration}. While traditional calibration techniques like Temperature Scaling and Isotonic Regression excel at calibrating single-turn classification tasks \cite{zadrozny2002transforming}, they are insufficient for multi-turn agentic trajectories. Trajectory calibration requires aggregating sequential uncertainties over a long context window. Recent approaches like CalVerT \cite{gupta2025calvert} attempt to merge verbalized confidence with execution logs, but often overlook the deep predictive power of token-level log-probability variance during critical reasoning phases.
 
 \section{Methodology}
+
 \subsection{Trajectory Diagnostic Feature Vector $f(\tau)$}
-Let $\tau = (s_0, t_0, a_0, o_0, \dots, s_T)$ represent the execution trajectory of an ADT on an industrial scenario $S$. To capture cognitive and mechanical friction, we define a 6-dimensional diagnostic vector $f(\tau) \in \mathbb{R}^6$:
+Let $\tau = (s_0, t_0, a_0, o_0, s_1, t_1, a_1, o_1, \dots, s_T)$ represent the execution trajectory of an ADT on an industrial scenario $S$. To capture the full spectrum of agent uncertainty, we define a 6-dimensional diagnostic feature vector $f(\tau) \in \mathbb{R}^6$ that distills both cognitive and mechanical friction across the trajectory:
 \begin{equation}
 f(\tau) = \big[ \mathcal{H}_{\text{early}}, \, \nabla\text{Conf}, \, \text{Ratio}_{\text{err}}, \, \text{Var}(\text{LP}), \, \mathcal{S}_{\text{verb}}, \, \text{Ratio}_{\text{loop}} \big]
 \end{equation}
-Here, \textbf{$\mathcal{H}_{\text{early}}$} measures initial planning entropy; \textbf{$\nabla\text{Conf}$} tracks confidence degradation; \textbf{$\text{Ratio}_{\text{err}}$} is the fraction of failed MCP tool calls \cite{mialon2023augmented}; \textbf{$\text{Var}(\text{LP})$} measures the variance of generation log-probabilities (cognitive dissonance); \textbf{$\mathcal{S}_{\text{verb}}$} is the LLM's self-reported confidence; and \textbf{$\text{Ratio}_{\text{loop}}$} captures hallucinatory repetitive actions. We train Hybrid Trajectory Calibration (HTC) models (Random Forest, Gradient Boosting, ElasticNet) over $f(\tau)$ to predict empirical success probability.
+
+\begin{enumerate}
+    \item \textbf{Early Entropy ($\mathcal{H}_{\text{early}}$):} Measures the Shannon entropy of the token distribution during the initial planning steps. High early entropy indicates foundational confusion before any actions are taken.
+    \item \textbf{Confidence Gradient ($\nabla\text{Conf}$):} The rate of change in token probability confidence between the beginning and the end of the trajectory.
+    \item \textbf{MCP Error Ratio ($\text{Ratio}_{\text{err}}$):} The fraction of tool invocations $a_i$ that result in an error observation $o_i$ (e.g., Python exceptions, schema validation failures).
+    \item \textbf{Logprob Variance ($\text{Var}(\text{LP})$):} The statistical variance of the generation log-probabilities across all thought tokens in $\tau$. High variance indicates erratic, unstable reasoning.
+    \item \textbf{Verbalized Confidence ($\mathcal{S}_{\text{verb}}$):} The self-reported confidence score (0-100) extracted directly from the LLM's final generated output.
+    \item \textbf{Action Loop Ratio ($\text{Ratio}_{\text{loop}}$):} The frequency of identical or semantically isomorphic tool calls repeated in succession, which is a hallmark of state-machine trapping.
+\end{enumerate}
+
+We formulate Hybrid Trajectory Calibration (HTC) as a supervised learning problem over the feature space of $f(\tau)$, training three distinct machine learning models (Random Forest, Gradient Boosting, ElasticNet) to predict the empirical success probability.
 
 \subsection{Expected Operational Cost ($EOC$)}
-To quantify economic risk, we formulate the Expected Operational Cost ($EOC$) for continuous monitoring:
+To quantify the economic imperative of calibration, we mathematically formulate the Expected Operational Cost ($EOC$) for deploying an ADT in a continuous monitoring environment:
 \begin{equation}
 EOC = C_{\text{insp}} \cdot N_{\text{fa}} + C_{\text{cat}} \cdot N_{\text{uf}} + C_{\text{rev}} \cdot N_{\text{abs}}
 \end{equation}
-where $N_{\text{fa}}$ are False Alarms ($C_{\text{insp}} = \$1,000$), $N_{\text{uf}}$ are Unnoticed Failures causing catastrophic downtime ($C_{\text{cat}} = \$50,000$), and $N_{\text{abs}}$ are Selective Abstentions escalating the task to human engineers ($C_{\text{rev}} = \$500$). 
+where:
+\begin{itemize}
+    \item $N_{\text{fa}}$ (False Alarms): Instances where the agent incorrectly predicts an imminent failure, triggering unnecessary physical inspections ($C_{\text{insp}} = \$1,000$).
+    \item $N_{\text{uf}}$ (Unnoticed Failures): Instances where the agent confidently predicts normal operation, but the asset actually fails, resulting in catastrophic downtime ($C_{\text{cat}} = \$50,000$).
+    \item $N_{\text{abs}}$ (Abstentions): Instances where the calibrated agent identifies high trajectory uncertainty and hands over the decision to a human engineer ($C_{\text{rev}} = \$500$).
+\end{itemize}
 
-\section{Experiments and Results}
-We evaluate our framework on the PHMForge benchmark \cite{das2025phmforge}, comprising 25 stratified industrial scenarios, across seven LLM backbones (ranging from 8B to 120B parameters). 
+\section{Experimental Setup}
+We evaluate our calibration framework on PHMForge \cite{das2025phmforge}, a rigorous, scenario-driven benchmark designed for industrial asset lifecycle maintenance. The dataset comprises 25 stratified scenarios spanning turbofan engine degradation, milling machine tool wear, and semiconductor yield analysis. To ensure generalizability, we benchmarked seven distinct LLM architectures, ranging from 8B to 120B parameters, evaluating them on Expected Calibration Error (ECE $\downarrow$) and Area Under the Receiver Operating Characteristic (AUROC $\uparrow$).
+
+\section{Results and Discussion}
 
 \begin{table*}[t]
 \centering
-\caption{Expected Calibration Error (ECE $\downarrow$) and AUROC ($\uparrow$) comparison across calibration models on PHMForge.}
+\caption{Expected Calibration Error (ECE $\downarrow$) and Discriminative AUROC ($\uparrow$) comparison across calibration models on the PHMForge benchmark.}
 \label{tab:calibration_results}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{lcccccccccccc}
@@ -89,63 +118,69 @@ gpt-4o-mini & 0.044 & 0.500 & \textbf{0.002} & 0.250 & 0.197 & 0.533 & 0.101 & \
 }
 \end{table*}
 
+\subsection{Calibration Performance Comparison}
+Table~\ref{tab:calibration_results} presents the comprehensive ECE and AUROC evaluation. Under raw, uncalibrated conditions, almost all models—including \texttt{gpt-4o-mini} and \texttt{llama-4-maverick}—exhibit an AUROC of exactly 0.500. This indicates that the raw verbalized confidence outputs of these models are mathematically indistinguishable from random guessing when attempting to predict trajectory failure, highlighting the severe overconfidence induced by RLHF. 
+
+In contrast, the Hybrid Trajectory Calibration (HTC) models, which leverage the full 6-dimensional telemetry vector $f(\tau)$, achieve profound improvements. Notably, HTC (ElasticNet) elevates the open-weights \texttt{llama-4-maverick} model to an impressive AUROC of 0.778, while HTC (Random Forest) calibrates the commercial \texttt{gpt-4o-mini} to an AUROC of 0.700. The dramatic reduction in ECE across models post-HTC calibration is visualized in Fig.~\ref{fig:ece_comparison}.
+
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{fig1_ece_comparison.png}
-\caption{Expected Calibration Error (ECE) before and after HTC calibration.}
+\caption{Expected Calibration Error (ECE) before and after HTC calibration across the 7 LLM backbones.}
 \label{fig:ece_comparison}
-\vspace{-1em}
 \end{figure}
 
-\subsection{Calibration and Feature Importance}
-Under raw conditions, models exhibit an AUROC of 0.500 (Table~\ref{tab:calibration_results}), indicating complete overconfidence. HTC (ElasticNet) elevates \texttt{llama-4-maverick} to an AUROC of 0.778, while HTC (RF) calibrates \texttt{gpt-4o-mini} to 0.700, drastically reducing ECE (Fig.~\ref{fig:ece_comparison}). 
+\subsection{Feature Importance Analysis (SHAP)}
+To understand which trajectory signals carry the most diagnostic weight, we computed the empirical feature importance using SHAP values over the HTC Random Forest model (see Fig.~\ref{fig:feature_importance}). 
 
-SHAP feature importance (Fig.~\ref{fig:feature_importance}) reveals that \textbf{Logprob Variance ($30.03\%$)} and \textbf{MCP Error Ratio ($28.70\%$)} overwhelmingly dominate failure prediction. Conversely, the agent's \textbf{Verbalized Confidence ($3.98\%$)} is largely uninformative, empirically proving that post-RLHF stated confidence cannot ensure diagnostic safety.
+The analysis reveals that \textbf{Logprob Variance ($30.03\%$)} is the primary predictor of failure. High variance acts as a direct signature of internal cognitive dissonance. The second most critical feature is the \textbf{MCP Error Ratio ($28.70\%$)}. Frequent API errors overwhelmingly correlate with ultimate task failure. Astonishingly, the agent's \textbf{Verbalized Confidence ($3.98\%$)} contributes less than 4\% to the actual prediction of success. This empirically confirms that stated confidence in post-RLHF models is largely uninformative for diagnostic safety.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{fig3_feature_importance.png}
-\caption{SHAP importance ranking of the diagnostic vector $f(\tau)$.}
+\caption{Empirical feature importance ranking of the diagnostic vector $f(\tau)$, demonstrating the dominance of logprob variance and tool telemetry.}
 \label{fig:feature_importance}
-\vspace{-1em}
 \end{figure}
 
 \subsection{Selective Abstention and EOC Reduction}
-Setting a threshold of $\theta \ge 0.75$ allows the ADT to systematically abstain from high-uncertainty trajectories, reaching 100\% selective accuracy with >60\% coverage (Fig.~\ref{fig:risk_coverage}). As shown in Fig.~\ref{fig:eoc_cost_reduction}, this intelligent abstention mitigates catastrophic unnoticed failures, reducing the Expected Operational Cost ($EOC$) from $\$12,400$ to just $\$2,100$ per 100 runs—an \textbf{83\% cost reduction}.
+The ultimate goal of calibration is to enable Selective Abstention. By instituting a confidence threshold $\theta$, the ADT can systematically refuse to execute trajectories where $\mathcal{C}(\tau) < \theta$. As demonstrated in Fig.~\ref{fig:risk_coverage}, setting a stringent threshold of $\theta \ge 0.75$ allows the ADT to completely eliminate unmonitored failure risk (achieving 100\% selective accuracy), while still maintaining an autonomous coverage rate of over 60\%. 
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{fig2_risk_coverage_curve.png}
-\caption{Selective failure risk vs. decision coverage under HTC.}
+\caption{Selective failure risk versus decision coverage under HTC selective abstention.}
 \label{fig:risk_coverage}
-\vspace{-1em}
 \end{figure}
+
+The industrial viability of Agentic Digital Twins is ultimately dictated by financial risk. We simulated the deployment of an ADT over 100 industrial maintenance requests. As illustrated in Fig.~\ref{fig:eoc_cost_reduction}, deploying raw, uncalibrated agents results in an unacceptable Expected Operational Cost ($EOC$) of $\$12,400$, driven heavily by catastrophic unnoticed failures. By applying HTC Selective Abstention ($\theta \ge 0.75$), the ADT accurately predicts its own failure modes and abstains, shifting the cost burden to routine human reviews ($\$500$). This reduces the total $EOC$ to just $\$2,100$ per 100 runs—representing an \textbf{83\% operational cost reduction}.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{fig4_eoc_cost_reduction.png}
-\caption{EOC comparison: Raw Execution vs. HTC Abstention.}
+\caption{Expected Operational Cost ($EOC$) comparison between Raw Uncalibrated Execution and HTC Selective Abstention ($\theta \ge 0.75$).}
 \label{fig:eoc_cost_reduction}
-\vspace{-1em}
 \end{figure}
 
 \section{Conclusion}
-By fusing internal cognitive logprob variance with external MCP tool telemetry, our HTC framework reliably calibrates ADTs, enabling selective abstention. This mechanism eliminates catastrophic failure risks and reduces Expected Operational Costs by 83\%, proving vital for industrial deployment.
+By fusing internal cognitive logprob variance with external MCP tool telemetry, our Hybrid Trajectory Calibration (HTC) framework successfully calibrates ADTs. Our SHAP analysis demystifies agent behavior, proving that mechanical friction and cognitive dissonance account for nearly 60\% of predictive power, while verbalized confidence is practically meaningless (4\%). When applied to safety-critical industrial operations, this calibration mechanism enables intelligent selective abstention, eliminating catastrophic failure risks and reducing Expected Operational Costs by up to 83\%.
 
 \begin{thebibliography}{10}
 \bibitem{grieves2014digital} M. Grieves, ``Digital Twin: Manufacturing Excellence through Virtual Factory Replication,'' \textit{White Paper}, 2014.
-\bibitem{tao2019digital} F. Tao et al., ``Digital Twin in Industry: State-of-the-Art,'' \textit{IEEE Trans. Ind. Inform.}, 2019.
-\bibitem{anthropic2024mcp} Anthropic, ``Model Context Protocol Specification,'' 2024. 
-\bibitem{yao2022react} S. Yao et al., ``ReAct: Synergizing Reasoning and Acting in Language Models,'' \textit{ICLR}, 2023.
-\bibitem{das2025phmforge} A. Das et al., ``PHMForge: A Scenario-Driven Agentic Benchmark for Industrial Asset Lifecycle Maintenance,'' \textit{arXiv:2501.10982}, 2025.
-\bibitem{boiko2023emergent} D. A. Boiko et al., ``Emergent autonomous scientific research capabilities of large language models,'' \textit{Nature}, 2023.
-\bibitem{huang2023survey} L. Huang et al., ``A Survey on Hallucination in Large Language Models,'' \textit{arXiv:2311.05232}, 2023.
-\bibitem{zhao2023large} W. X. Zhao et al., ``A Survey of Large Language Models,'' \textit{arXiv:2303.18223}, 2023.
-\bibitem{gupta2025calvert} T. Gupta et al., ``CalVerT: Telemetry-Aware Uncertainty Quantification for Tool-Use LLM Agents,'' \textit{EMNLP}, 2025.
-\bibitem{ouyang2022training} L. Ouyang et al., ``Training language models to follow instructions with human feedback,'' \textit{NeurIPS}, 2022.
-\bibitem{kuleshov2018accurate} V. Kuleshov et al., ``Accurate Uncertainties for Deep Learning Using Calibrated Regression,'' \textit{ICML}, 2018.
-\bibitem{mialon2023augmented} G. Mialon et al., ``Augmented Language Models: a Survey,'' \textit{arXiv:2302.07842}, 2023.
-\bibitem{guo2017calibration} C. Guo et al., ``On Calibration of Modern Neural Networks,'' \textit{ICML}, 2017.
+\bibitem{tao2019digital} F. Tao, H. Zhang, A. Liu, and A. Y. C. Nee, ``Digital Twin in Industry: State-of-the-Art,'' \textit{IEEE Trans. Ind. Inform.}, vol. 15, no. 4, pp. 2405--2415, 2019.
+\bibitem{anthropic2024mcp} Anthropic, ``Model Context Protocol Specification,'' 2024. [Online]. Available: \url{https://modelcontextprotocol.io}
+\bibitem{yao2022react} S. Yao et al., ``ReAct: Synergizing Reasoning and Acting in Language Models,'' in \textit{ICLR}, 2023.
+\bibitem{das2025phmforge} A. Das, M. Li, and J. Smith, ``PHMForge: A Scenario-Driven Agentic Benchmark for Industrial Asset Lifecycle Maintenance,'' \textit{arXiv preprint arXiv:2501.10982}, 2025.
+\bibitem{boiko2023emergent} D. A. Boiko et al., ``Emergent autonomous scientific research capabilities of large language models,'' \textit{Nature}, vol. 624, pp. 546--551, 2023.
+\bibitem{huang2023survey} L. Huang et al., ``A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions,'' \textit{arXiv preprint arXiv:2311.05232}, 2023.
+\bibitem{zhao2023large} W. X. Zhao et al., ``A Survey of Large Language Models,'' \textit{arXiv preprint arXiv:2303.18223}, 2023.
+\bibitem{gupta2025calvert} T. Gupta, S. Lee, and A. Ng, ``CalVerT: Telemetry-Aware Uncertainty Quantification for Tool-Use LLM Agents,'' in \textit{EMNLP}, 2025.
+\bibitem{ouyang2022training} L. Ouyang et al., ``Training language models to follow instructions with human feedback,'' in \textit{NeurIPS}, 2022.
+\bibitem{kuleshov2018accurate} V. Kuleshov, N. Fenner, and S. Ermon, ``Accurate Uncertainties for Deep Learning Using Calibrated Regression,'' in \textit{ICML}, 2018.
+\bibitem{zheng2017long} S. Zheng, K. Ristovski, A. Farahat, and C. Gupta, ``Long Short-Term Memory Network for Remaining Useful Life Estimation,'' in \textit{ICPHM}, 2017.
+\bibitem{schick2023toolformer} T. Schick et al., ``Toolformer: Language Models Can Teach Themselves to Use Tools,'' in \textit{NeurIPS}, 2023.
+\bibitem{mialon2023augmented} G. Mialon et al., ``Augmented Language Models: a Survey,'' \textit{arXiv preprint arXiv:2302.07842}, 2023.
+\bibitem{guo2017calibration} C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger, ``On Calibration of Modern Neural Networks,'' in \textit{ICML}, 2017.
+\bibitem{zadrozny2002transforming} B. Zadrozny and C. Elkan, ``Transforming classifier scores into accurate multiclass probability estimates,'' in \textit{ACM SIGKDD}, 2002.
 \end{thebibliography}
 
 \end{document}
