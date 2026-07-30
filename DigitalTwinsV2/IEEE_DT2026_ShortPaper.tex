@@ -27,9 +27,9 @@ Agentic Digital Twins delegate diagnostic and maintenance decisions to
 tool-augmented language models, so predicting when such an agent is about to
 fail---and abstaining---is a safety requirement. The signals proposed for this
 are token-level uncertainty, verbalized confidence, and tool-execution
-telemetry. We audited a working pipeline built to evaluate exactly those signals
-on an industrial prognostics benchmark, and found that none of its features
-measured the system it claimed to describe. Token logprobs were synthesised by
+telemetry. We audited our own working pipeline, built to evaluate exactly those
+signals on an industrial prognostics benchmark, and found that none of its
+features measured the system they were taken to describe. Token logprobs were synthesised by
 the logging layer from a hard-coded constant; verbalized confidence was never
 elicited; the tool-error rate was inferred by substring-matching observation
 text; the grading harness wrote its verdict into that same text; the telemetry
@@ -70,6 +70,18 @@ For the pipeline we audited, none of them were. The defects are not exotic---a
 fallback that keeps a long sweep running, a default for an unparsed field, a
 status message appended to a trace---and each yields a column that passes every
 check short of asking where the numbers came from.
+
+\textbf{Relation to work on agent provenance.} A growing literature treats the
+execution trace as the object of study, formalising it as a typed graph over
+tool calls, memory accesses and retrieval steps in order to support
+verification, debugging and accountability~\cite{provsurvey}, or auditing which
+evidence a given action was actually conditioned on~\cite{provaudit}. That work
+takes the trace as a faithful record and builds machinery on top of it. We
+attack the prior assumption: the trace can be manufactured by the
+instrumentation that writes it, and a provenance graph over a fabricated trace
+inherits the fabrication without any inconsistency that graph-level analysis
+would reveal. The checks we propose sit below that layer and ask whether each
+recorded quantity was observed at all.
 
 We contribute (i) six documented defects with a cheap detector for each,
 (ii) a released gate that automates them and refuses a corpus that fails, and
@@ -337,7 +349,14 @@ original study the ``optimised'' policy was twice as expensive as abstaining on
 everything, which no reported number revealed because that baseline was never
 computed.
 
-\textbf{Limitations.} The empirical section illustrates rather than establishes.
+\textbf{Limitations.} The detectors were derived from one pipeline and validated
+against synthetic fixtures, not against independently authored corpora. Whether
+these six defects recur elsewhere, or are idiosyncratic to this codebase, we
+cannot answer from a sample of one; what the case establishes is that each is
+reachable by ordinary engineering decisions and invisible to value-level
+inspection, which is a claim about the class rather than its frequency.
+
+The empirical section illustrates rather than establishes.
 Each cell holds $n=45$, with intervals near $\pm0.16$; two of three backbones
 show the effect and we cannot explain the third; all three are quantised
 variants from one provider; and the significant cells were found after exploring
@@ -375,6 +394,11 @@ Bioinformatics}, vol. 8, no. 25, 2007.
 \bibitem{kapoor} S. Kapoor and A. Narayanan, ``Leakage and the reproducibility
 crisis in machine-learning-based science,'' \emph{Patterns}, vol. 4, no. 9,
 2023.
+\bibitem{provsurvey} Y. Wang \emph{et al.}, ``From agent traces to trust: A
+survey of evidence tracing and execution provenance in LLM agents,''
+\emph{arXiv:2606.04990}, 2026.
+\bibitem{provaudit} J. Liao, ``Auditing provenance sensitivity in LLM agent
+action selection,'' \emph{arXiv:2607.20827}, 2026.
 \end{thebibliography}
 
 \end{document}
