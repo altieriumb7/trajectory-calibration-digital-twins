@@ -1,0 +1,137 @@
+diff --git a/ReActXen/src/reactxen/agents/react/agents.py b/ReActXen/src/reactxen/agents/react/agents.py
+index b218c20..65a1dab 100644
+--- a/ReActXen/src/reactxen/agents/react/agents.py
++++ b/ReActXen/src/reactxen/agents/react/agents.py
+@@ -2038,7 +2038,7 @@ class ReactReflectAgent(ReactAgent):
+         self.promptTokens += llmResult["input_token_count"]
+         self.llmCalls += 1
+ 
+-        return format_step(
++        formatted = format_step(
+             llmResult["generated_text"],
+             stop,
+             prefix,
+@@ -2047,6 +2047,20 @@ class ReactReflectAgent(ReactAgent):
+             react_style=self.reactstyle,
+         )
+ 
++        # Propagate provider logprobs, mirroring ReactAgent.prompt_agent. Without
++        # this the field is dropped here and the telemetry logger sees nothing.
++        if isinstance(formatted, dict):
++            logprobs = None
++            if "results" in llmResult and len(llmResult["results"]) > 0:
++                res = llmResult["results"][0]
++                if "token_logprobs" in res:
++                    logprobs = res["token_logprobs"]
++            elif "token_logprobs" in llmResult:
++                logprobs = llmResult["token_logprobs"]
++            formatted["logprobs"] = logprobs
++
++        return formatted
++
+     def prompt_reflection(self) -> str:
+         llmResult = self.reflect_llm(
+             self._build_reflection_prompt(),
+diff --git a/ReActXen/src/reactxen/utils/model_inference.py b/ReActXen/src/reactxen/utils/model_inference.py
+index 7d5c8af..ce49b46 100644
+--- a/ReActXen/src/reactxen/utils/model_inference.py
++++ b/ReActXen/src/reactxen/utils/model_inference.py
+@@ -137,10 +137,23 @@ def direct_openai_llm(
+         "messages": c_messages,
+         "max_tokens": max_tokens,
+         "temperature": temperature,
++        "logprobs": True,
+     }
+     if seed is not None:
+         request_params["seed"] = seed
+-    response = client.chat.completions.create(**request_params)
++    try:
++        response = client.chat.completions.create(**request_params)
++    except Exception:
++        # Gateway rejects logprobs: retry without it and let the caller see that
++        # they are genuinely unavailable. Never substitute an estimate.
++        request_params.pop("logprobs", None)
++        response = client.chat.completions.create(**request_params)
++
++    token_logprobs = None
++    choice_logprobs = getattr(response.choices[0], "logprobs", None)
++    if choice_logprobs is not None and getattr(choice_logprobs, "content", None):
++        token_logprobs = [t.logprob for t in choice_logprobs.content]
++
+     generated_text = response.choices[0].message.content
+     if stop:
+         for phrase in stop:
+@@ -148,6 +161,8 @@ def direct_openai_llm(
+                 generated_text = generated_text.split(phrase)[0]
+     response_object = {
+         "generated_text": generated_text,
++        "token_logprobs": token_logprobs,
++        "logprobs_source": "provider" if token_logprobs else "unavailable",
+         "promptTokens": response.usage.prompt_tokens,
+         "input_token_count": response.usage.prompt_tokens,
+         "completionTokens": response.usage.completion_tokens,
+@@ -277,6 +292,13 @@ def watsonx_llm(
+         TextParams.MAX_NEW_TOKENS: max_tokens,
+         TextParams.MIN_NEW_TOKENS: 1,
+         TextParams.STOP_SEQUENCES: stop,
++        # Ask the service for per-token logprobs. Without this the field is
++        # absent, and callers previously filled the gap with a synthetic
++        # generator instead of recording the absence.
++        TextParams.RETURN_OPTIONS: {
++            "token_logprobs": True,
++            "generated_tokens": True,
++        },
+     }
+ 
+     keys = os.environ.get("WATSONX_APIKEY", "")
+@@ -300,13 +322,49 @@ def watsonx_llm(
+     )
+ 
+     # Send the entire payload - ["generated_text"], promptTokens, completionTokens
++    generated_response = None
+     try:
+         generated_response = model.generate(prompt=prompt)
+     except Exception as e:
+         print(f"Error occurred: {e}")
++        # Some deployments reject RETURN_OPTIONS. Retry once without it so the
++        # run continues, with logprobs honestly marked unavailable rather than
++        # substituted. Also note the original swallowed this exception and then
++        # dereferenced an unbound name; failures are now raised.
++        retry_params = {
++            k: v for k, v in parameters.items() if k != TextParams.RETURN_OPTIONS
++        }
++        try:
++            model = ModelInference(
++                model_id=selected_model,
++                params=retry_params,
++                credentials=credentials,
++                project_id=project_id,
++                max_retries=5,
++                delay_time=2,
++                retry_status_codes=[502, 503],
++            )
++            generated_response = model.generate(prompt=prompt)
++        except Exception as retry_error:
++            print(f"Retry without RETURN_OPTIONS also failed: {retry_error}")
++            raise
+     # print("Here this i know its completed....")
+ 
+-    return generated_response["results"][0]
++    result = generated_response["results"][0]
++
++    # Normalise the logprob field so every provider path exposes the same key.
++    token_logprobs = None
++    generated_tokens = result.get("generated_tokens")
++    if generated_tokens:
++        collected = [
++            t.get("logprob") for t in generated_tokens if t.get("logprob") is not None
++        ]
++        if collected:
++            token_logprobs = collected
++    result["token_logprobs"] = token_logprobs
++    result["logprobs_source"] = "provider" if token_logprobs else "unavailable"
++
++    return result
+     # print (stop)
+     # return_response = generated_response["results"][0]
+     # return_response["generated_text"] = maybe_trim_generated_text(return_response, stop)

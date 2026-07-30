@@ -1,0 +1,53 @@
+==========================================================================
+==========================================================================
+PROVENANCE REPORT  (57 trajectories, 407 steps)
+==========================================================================
+  [FATAL] constant/verbalized_confidence: every value is null
+  [FATAL] constant/mcp_status_code: every value is null
+  [warn ] imputed/thought_logprobs: not measured on 22/407 rows (5.4%) -- exclude those rows rather than imputing
+  [FATAL] imputed/verbalized_confidence: never measured on any of 407 rows
+  [FATAL] imputed/mcp_status_code: never measured on any of 378 rows
+--------------------------------------------------------------------------
+  usable feature families:   token, structural
+  unusable feature families: verbalized, mcp_error
+VERDICT: usable with exclusions -- train only on the families listed as usable
+
+==========================================================================
+corpus: 57 trajectories, 1 backbone(s), 57 scenarios, Pass@1=0.474
+  token        usable on 57/57 trajectories
+  verbalized   usable on 0/57 trajectories
+  structural   usable on 57/57 trajectories
+  mcp_error    usable on 0/57 trajectories
+  observation  usable on 57/57 trajectories
+
+==========================================================================
+out-of-fold results (Bonferroni alpha = 0.05/4 = 0.0125)
+==========================================================================
+  [   ] token            ( 3 feat) AUROC 0.408 [0.263,0.558]  ECE 0.231  p=0.8861
+  [   ] structural       ( 5 feat) AUROC 0.494 [0.340,0.646]  ECE 0.134  p=0.5182
+  [   ] observation      ( 3 feat) AUROC 0.506 [0.355,0.648]  ECE 0.143  p=0.4538
+  [   ] all measured     (11 feat) AUROC 0.375 [0.232,0.522]  ECE 0.256  p=0.9445
+
+==========================================================================
+stratified by tool-layer provenance (see AUDIT.md D11)
+==========================================================================
+
+  computed outcome: n=27  Pass@1=0.667  scenarios=27
+    token            AUROC 0.401 [0.178,0.632]  p=0.8021
+    structural       AUROC 0.463 [0.188,0.741]  p=0.6382
+    observation      AUROC 0.778 [0.548,0.960]  p=0.0105
+    all measured     AUROC 0.475 [0.243,0.716]  p=0.6077
+
+  fabricated outcome: n=30  Pass@1=0.300  scenarios=30
+    token            AUROC 0.206 [0.051,0.392]  p=0.9960
+    structural       AUROC 0.320 [0.097,0.544]  p=0.9420
+    observation      AUROC 0.619 [0.386,0.820]  p=0.1589
+    all measured     AUROC 0.317 [0.097,0.550]  p=0.9355
+
+==========================================================================
+token-feature provenance check
+  mean_logprob       n= 57 mean=-0.0428 std=0.0210
+  logprob_variance   n= 57 mean=+0.0194 std=0.0096
+  early_entropy      n= 55 mean=+0.0579 std=0.0210
+
+written to C:\Users\Umberto\Desktop\DigitalTwins\DigitalTwinsV2\tables

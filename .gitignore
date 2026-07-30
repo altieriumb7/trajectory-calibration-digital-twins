@@ -75,3 +75,20 @@ Thumbs.db
 .system_generated/
 brain/
 scratch/
+
+# Partial / debug collections kept locally as evidence but not published.
+# The corpora the paper analyses are results/telemetry_runs (audited) and
+# results/v2_clean (re-collected); results/v2_together_CREDIT_EXHAUSTED is
+# retained as the evidence for the silent-provider failure documented in AUDIT.md.
+results/smoke_v6/
+results/v2_corpus/
+results/v2_together_react_DISCARDED/
+results/v2_together_unicode_LOSS_DISCARDED/
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk

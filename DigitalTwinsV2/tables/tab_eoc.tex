@@ -1,16 +1,16 @@
 \begin{table}[t]
 \centering
-\caption{Expected operational cost per scenario. The trivial always-abstain policy is the baseline any selective policy must beat.}
+\caption{Expected operational cost per scenario. Always-abstain is the baseline any selective policy must beat; V1 reported \$2{,}100 against an always-execute baseline only.}
 \label{tab:eoc}
 \footnotesize
 \begin{tabular}{lcc}
 \toprule
-\textbf{Policy} & \textbf{EOC/scenario} & \textbf{vs.\ best} \\
+\textbf{Policy} & \textbf{EOC/scenario} & \textbf{Ratio} \\
 \midrule
-Always execute & \$23,054 & 33.05$\times$ \\
-Always abstain & \$1,039 & 1.49$\times$ \\
-Selective, $\theta{=}0.75$ & \$1,506 & 2.16$\times$ \\
-\textbf{Selective, $\theta{=}0.88$} & \textbf{\$698} & --- \\
+Always execute & \$23,054 & 22.19$\times$ \\
+Selective, $\theta{=}0.75$ & \$2,144 & 2.06$\times$ \\
+Selective, best $\theta{=}0.90$ & \$1,039 & 1.00$\times$ \\
+\textbf{Always abstain} & \textbf{\$1,039} & $1.00\times$ \\
 \bottomrule
 \end{tabular}
 \end{table}

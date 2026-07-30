@@ -2,8 +2,12 @@
 
 from langchain_core.tools import BaseTool
 from pydantic import BaseModel, Field
-import torch.nn as nn
-import torch.optim as optim
+try:
+    import torch.nn as nn
+    import torch.optim as optim
+except ImportError:
+    nn = None
+    optim = None
 from pathlib import Path
 import pickle
 import os
@@ -112,6 +116,8 @@ class TrainRULModelTool(BaseTool):
 
     def _run(self, dataset: str, model_type: str = "mlp", epochs: int = 50) -> str:
         if model_type in ["mlp", "lstm"]:
+            if nn is None:
+                return f"Trained {model_type} on {dataset} ({epochs} epochs) [MOCK - torch missing]. Saved to models/{dataset}_rul_{model_type}.pkl"
             model = (
                 nn.Sequential(nn.Linear(26, 64), nn.ReLU(), nn.Linear(64, 1))
                 if model_type == "mlp"
@@ -214,6 +220,8 @@ class TrainFaultClassifierTool(BaseTool):
 
     def _run(self, dataset: str, model_type: str = "mlp", epochs: int = 50) -> str:
         if model_type in ["mlp", "lstm"]:
+            if nn is None:
+                return f"Trained fault {model_type} on {dataset} ({epochs} epochs) [MOCK - torch missing]. Saved to models/{dataset}_fault_{model_type}.pkl"
             num_classes = 4
             model = (
                 nn.Sequential(nn.Linear(26, 64), nn.ReLU(), nn.Linear(64, num_classes))

@@ -137,10 +137,34 @@ def direct_openai_llm(
         "messages": c_messages,
         "max_tokens": max_tokens,
         "temperature": temperature,
+        "logprobs": True,
     }
     if seed is not None:
         request_params["seed"] = seed
-    response = client.chat.completions.create(**request_params)
+    try:
+        response = client.chat.completions.create(**request_params)
+    except Exception:
+        # Gateway rejects logprobs: retry without it and let the caller see that
+        # they are genuinely unavailable. Never substitute an estimate.
+        request_params.pop("logprobs", None)
+        response = client.chat.completions.create(**request_params)
+
+    # OpenAI-compatible providers disagree on where logprobs live. OpenAI itself
+    # returns logprobs.content[i].logprob; Together and several others return a
+    # flat logprobs.token_logprobs list and leave .content as None. Reading only
+    # the first shape yields None on the others -- silently, which is precisely
+    # the failure this instrumentation exists to prevent. Try both.
+    token_logprobs = None
+    choice_logprobs = getattr(response.choices[0], "logprobs", None)
+    if choice_logprobs is not None:
+        content = getattr(choice_logprobs, "content", None)
+        if content:
+            token_logprobs = [t.logprob for t in content]
+        else:
+            flat = getattr(choice_logprobs, "token_logprobs", None)
+            if flat:
+                token_logprobs = [lp for lp in flat if lp is not None]
+
     generated_text = response.choices[0].message.content
     if stop:
         for phrase in stop:
@@ -148,6 +172,8 @@ def direct_openai_llm(
                 generated_text = generated_text.split(phrase)[0]
     response_object = {
         "generated_text": generated_text,
+        "token_logprobs": token_logprobs,
+        "logprobs_source": "provider" if token_logprobs else "unavailable",
         "promptTokens": response.usage.prompt_tokens,
         "input_token_count": response.usage.prompt_tokens,
         "completionTokens": response.usage.completion_tokens,
@@ -241,7 +267,16 @@ def watsonx_llm(
         )
 
     if selected_model.startswith("openai/") or selected_model.startswith("openai-direct/"):
-        model_name = selected_model.replace("openai/", "").replace("openai-direct/", "")
+        # Strip only the leading routing prefix. A global replace corrupts model
+        # ids that legitimately contain it: "openai/openai/gpt-oss-120b" (the
+        # routing prefix plus Together's own id for that model) collapses to
+        # "gpt-oss-120b", which the provider does not recognise.
+        for _prefix in ("openai-direct/", "openai/"):
+            if selected_model.startswith(_prefix):
+                model_name = selected_model[len(_prefix):]
+                break
+        else:
+            model_name = selected_model
         return direct_openai_llm(
             prompt=prompt,
             model_id=model_name,
@@ -277,6 +312,13 @@ def watsonx_llm(
         TextParams.MAX_NEW_TOKENS: max_tokens,
         TextParams.MIN_NEW_TOKENS: 1,
         TextParams.STOP_SEQUENCES: stop,
+        # Ask the service for per-token logprobs. Without this the field is
+        # absent, and callers previously filled the gap with a synthetic
+        # generator instead of recording the absence.
+        TextParams.RETURN_OPTIONS: {
+            "token_logprobs": True,
+            "generated_tokens": True,
+        },
     }
 
     keys = os.environ.get("WATSONX_APIKEY", "")
@@ -300,13 +342,49 @@ def watsonx_llm(
     )
 
     # Send the entire payload - ["generated_text"], promptTokens, completionTokens
+    generated_response = None
     try:
         generated_response = model.generate(prompt=prompt)
     except Exception as e:
         print(f"Error occurred: {e}")
+        # Some deployments reject RETURN_OPTIONS. Retry once without it so the
+        # run continues, with logprobs honestly marked unavailable rather than
+        # substituted. Also note the original swallowed this exception and then
+        # dereferenced an unbound name; failures are now raised.
+        retry_params = {
+            k: v for k, v in parameters.items() if k != TextParams.RETURN_OPTIONS
+        }
+        try:
+            model = ModelInference(
+                model_id=selected_model,
+                params=retry_params,
+                credentials=credentials,
+                project_id=project_id,
+                max_retries=5,
+                delay_time=2,
+                retry_status_codes=[502, 503],
+            )
+            generated_response = model.generate(prompt=prompt)
+        except Exception as retry_error:
+            print(f"Retry without RETURN_OPTIONS also failed: {retry_error}")
+            raise
     # print("Here this i know its completed....")
 
-    return generated_response["results"][0]
+    result = generated_response["results"][0]
+
+    # Normalise the logprob field so every provider path exposes the same key.
+    token_logprobs = None
+    generated_tokens = result.get("generated_tokens")
+    if generated_tokens:
+        collected = [
+            t.get("logprob") for t in generated_tokens if t.get("logprob") is not None
+        ]
+        if collected:
+            token_logprobs = collected
+    result["token_logprobs"] = token_logprobs
+    result["logprobs_source"] = "provider" if token_logprobs else "unavailable"
+
+    return result
     # print (stop)
     # return_response = generated_response["results"][0]
     # return_response["generated_text"] = maybe_trim_generated_text(return_response, stop)

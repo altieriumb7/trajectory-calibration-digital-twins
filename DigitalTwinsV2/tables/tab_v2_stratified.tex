@@ -1,0 +1,23 @@
+\begin{table}[t]
+\centering
+\caption{Out-of-fold failure prediction on the re-collected corpus, split by whether the benchmark's tool layer computes the outcome or fabricates it (Sec.~\ref{sec:label}). $^{\ast}$ marks significance at the Bonferroni threshold $\alpha=0.00500$.}
+\label{tab:v2strat}
+\footnotesize
+\begin{tabular}{llcc}
+\toprule
+\textbf{Stratum} & \textbf{Signals} & \textbf{AUROC [95\% CI]} & $p$ \\
+\midrule
+computed outcome & token & 0.567 [0.464, 0.660] & 0.1014 \\
+ & structural & 0.524 [0.426, 0.625] & 0.3283 \\
+ & observation & 0.616 [0.524, 0.710] & 0.0070 \\
+ & verbalized_posthoc & 0.421 [0.319, 0.527] & 0.9350 \\
+ & all measured & 0.603 [0.504, 0.692] & 0.0300 \\
+\midrule
+fabricated outcome & token & 0.519 [0.402, 0.646] & 0.3788 \\
+ & structural & 0.442 [0.322, 0.564] & 0.8261 \\
+ & observation & 0.561 [0.435, 0.682] & 0.1519 \\
+ & verbalized_posthoc & 0.577 [0.461, 0.696] & 0.1164 \\
+ & all measured & 0.527 [0.395, 0.653] & 0.3273 \\
+\bottomrule
+\end{tabular}
+\end{table}

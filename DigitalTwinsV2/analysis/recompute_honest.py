@@ -39,6 +39,32 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
+# IEEE two-column geometry: a column is ~3.5in, the text block ~7.16in. Figures
+# are authored at their final printed size so fonts are not rescaled by
+# \includegraphics, which is what made the V1 figures illegible.
+COL_W, FULL_W = 3.42, 7.16
+plt.rcParams.update({
+    "font.size": 7,
+    "axes.titlesize": 7.5,
+    "axes.labelsize": 7,
+    "xtick.labelsize": 6.5,
+    "ytick.labelsize": 6.5,
+    "legend.fontsize": 6,
+    "figure.dpi": 300,
+    "savefig.bbox": "tight",
+    "savefig.pad_inches": 0.02,
+})
+
+# Short labels for the column-width AUROC chart.
+SHORT = {
+    "Verbalized confidence (V1 `raw')": "Verbalized (V1 raw)",
+    "Synthetic token features": "Synthetic tokens",
+    r"V1 feature vector $f(\tau)$": r"V1 vector $f(\tau)$",
+    "Execution telemetry": "Execution telemetry",
+    "Execution + clean observations": "Exec. + clean obs.",
+    "Execution + grader-contaminated obs.": "Exec. + grader obs.",
+}
+
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import make_pipeline
@@ -385,23 +411,26 @@ def main() -> None:
 # Figures
 # --------------------------------------------------------------------------- #
 def _fig_auroc(tbl: pd.DataFrame) -> None:
-    fig, ax = plt.subplots(figsize=(7.0, 3.4))
+    fig, ax = plt.subplots(figsize=(COL_W, 2.35))
     o = tbl.sort_values("auroc")
     ypos = np.arange(len(o))
+    # Six comparisons are made, so significance is judged at the Bonferroni
+    # threshold. Two sets clear an uncorrected 0.05 and neither clears this one.
+    alpha = 0.05 / len(tbl)
     colors = ["#c0392b" if "contaminated" in m else
-              ("#27ae60" if lo > 0.5 else "#7f8c8d")
-              for m, lo in zip(o.model, o.auroc_lo)]
+              ("#27ae60" if p < alpha else "#7f8c8d")
+              for m, p in zip(o.model, o.p)]
     ax.barh(ypos, o.auroc, color=colors, alpha=0.85)
     ax.errorbar(o.auroc, ypos,
                 xerr=[o.auroc - o.auroc_lo, o.auroc_hi - o.auroc],
-                fmt="none", ecolor="#2c3e50", capsize=3, lw=1.2)
-    ax.axvline(0.5, color="k", ls="--", lw=1.1, label="chance")
+                fmt="none", ecolor="#2c3e50", capsize=2, lw=0.9)
+    ax.axvline(0.5, color="k", ls="--", lw=1.0, label="chance")
     ax.set_yticks(ypos)
-    ax.set_yticklabels(o.model, fontsize=7.5)
+    ax.set_yticklabels([SHORT.get(m, m) for m in o.model])
     ax.set_xlabel("Out-of-fold AUROC (95% bootstrap CI)")
     ax.set_xlim(0.2, 1.0)
-    ax.legend(fontsize=8, loc="lower right")
-    ax.set_title("Only the grader-contaminated model separates failures", fontsize=9.5)
+    ax.legend(loc="lower right")
+    ax.set_title("Only the contaminated model separates")
     fig.tight_layout()
     for e in ("pdf", "png"):
         fig.savefig(_FIGS / f"fig1_auroc_comparison.{e}", dpi=300)
@@ -409,25 +438,25 @@ def _fig_auroc(tbl: pd.DataFrame) -> None:
 
 
 def _fig_provenance(lp: np.ndarray, df: pd.DataFrame) -> None:
-    fig, (a1, a2) = plt.subplots(1, 2, figsize=(7.2, 2.9))
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(FULL_W, 2.35))
     a1.hist(lp, bins=80, density=True, color="#5b8ff9", alpha=0.75,
             label=f"observed ({len(lp):,} tokens)")
     xs = np.linspace(lp.min(), lp.max(), 400)
     a1.plot(xs, np.exp(-((xs - GEN_MEAN) ** 2) / (2 * GEN_STD ** 2))
-            / (GEN_STD * np.sqrt(2 * np.pi)), color="#c0392b", lw=2,
+            / (GEN_STD * np.sqrt(2 * np.pi)), color="#c0392b", lw=1.8,
             label=fr"$\mathcal{{N}}({GEN_MEAN:.2f},{GEN_STD:.3f}^2)$ generator")
     a1.set_xlabel("token logprob")
     a1.set_ylabel("density")
-    a1.legend(fontsize=6.5)
-    a1.set_title("Logprobs match the synthetic generator", fontsize=9)
+    a1.legend()
+    a1.set_title("Logprobs match the synthetic generator")
 
     vals, cnts = np.unique(df.verbalized_score, return_counts=True)
     a2.bar([str(v) for v in vals], cnts, color="#c0392b", alpha=0.8, width=0.5)
     a2.set_xlabel("verbalized confidence")
     a2.set_ylabel("trajectories")
-    a2.set_title("Verbalized confidence is a constant", fontsize=9)
+    a2.set_title("Verbalized confidence is a constant")
     for v, c in zip([str(v) for v in vals], cnts):
-        a2.text(v, c, f" {c}", ha="center", va="bottom", fontsize=7.5)
+        a2.text(v, c, f" {c}", ha="center", va="bottom")
     a2.set_ylim(0, cnts.max() * 1.18)
     fig.tight_layout()
     for e in ("pdf", "png"):
@@ -436,21 +465,21 @@ def _fig_provenance(lp: np.ndarray, df: pd.DataFrame) -> None:
 
 
 def _fig_risk_coverage(y: np.ndarray, store: dict[str, np.ndarray]) -> None:
-    fig, ax = plt.subplots(figsize=(6.2, 3.8))
+    fig, ax = plt.subplots(figsize=(COL_W, 2.45))
     for key, color, ls, lab in [
         ("Execution + grader-contaminated obs.", "#c0392b", "--",
-         "Execution + grader-contaminated obs. (artifact)"),
-        ("Execution telemetry", "#1E88E5", "-", "Execution telemetry (leak-controlled)"),
-        ("Synthetic token features", "#7f8c8d", ":", "Synthetic token features"),
+         "Exec. + grader obs. (artifact)"),
+        ("Execution telemetry", "#1E88E5", "-", "Execution telemetry"),
+        ("Synthetic token features", "#7f8c8d", ":", "Synthetic tokens"),
     ]:
         cov, risk = risk_coverage(y, store[key])
-        ax.plot(cov, risk, lw=1.9, color=color, ls=ls, label=lab)
-    ax.axhline(1 - y.mean(), color="k", ls=":", lw=1.2, label="no abstention")
-    ax.set_xlabel("Coverage (fraction of trajectories executed)")
+        ax.plot(cov, risk, lw=1.4, color=color, ls=ls, label=lab)
+    ax.axhline(1 - y.mean(), color="k", ls=":", lw=1.0, label="no abstention")
+    ax.set_xlabel("Coverage (fraction executed)")
     ax.set_ylabel("Selective failure risk")
-    ax.grid(alpha=0.3, ls="--")
-    ax.legend(fontsize=7)
-    ax.set_title("Out-of-fold risk--coverage profile", fontsize=9.5)
+    ax.grid(alpha=0.3, ls="--", lw=0.5)
+    ax.legend(loc="upper right")
+    ax.set_title("Out-of-fold risk--coverage")
     fig.tight_layout()
     for e in ("pdf", "png"):
         fig.savefig(_FIGS / f"fig3_risk_coverage.{e}", dpi=300)
@@ -458,19 +487,19 @@ def _fig_risk_coverage(y: np.ndarray, store: dict[str, np.ndarray]) -> None:
 
 
 def _fig_cost(thetas, clean, leaky, ae, aa, bt, bc) -> None:
-    fig, ax = plt.subplots(figsize=(6.2, 3.8))
-    ax.plot(thetas, clean, lw=2, color="#1E88E5", label="Selective (leak-controlled)")
-    ax.plot(thetas, leaky, lw=1.6, ls="--", color="#c0392b",
-            label="Selective (grader-contaminated, artifact)")
-    ax.axhline(ae, color="#8e44ad", ls="-.", lw=1.4, label=f"Always execute (\\${ae:,.0f})")
-    ax.axhline(aa, color="#f39c12", ls=":", lw=1.8, label=f"Always abstain (\\${aa:,.0f})")
-    ax.plot([bt], [bc], "o", color="#27ae60", ms=7)
+    fig, ax = plt.subplots(figsize=(COL_W, 2.45))
+    ax.plot(thetas, clean, lw=1.5, color="#1E88E5", label="Selective (leak-controlled)")
+    ax.plot(thetas, leaky, lw=1.3, ls="--", color="#c0392b",
+            label="Selective (contaminated)")
+    ax.axhline(ae, color="#8e44ad", ls="-.", lw=1.1, label=f"Always execute (\\${ae:,.0f})")
+    ax.axhline(aa, color="#f39c12", ls=":", lw=1.5, label=f"Always abstain (\\${aa:,.0f})")
+    ax.plot([bt], [bc], "o", color="#27ae60", ms=5)
     ax.set_yscale("log")
     ax.set_xlabel(r"Abstention threshold $\theta$")
-    ax.set_ylabel("EOC per scenario (USD, log scale)")
-    ax.grid(alpha=0.3, ls="--", which="both")
-    ax.legend(fontsize=7, loc="upper left")
-    ax.set_title("Always-abstain is the baseline a policy must beat", fontsize=9.5)
+    ax.set_ylabel("EOC/scenario (USD, log)")
+    ax.grid(alpha=0.3, ls="--", lw=0.5, which="both")
+    ax.legend(loc="lower left")
+    ax.set_title("Always-abstain is the baseline to beat")
     fig.tight_layout()
     for e in ("pdf", "png"):
         fig.savefig(_FIGS / f"fig4_eoc.{e}", dpi=300)
@@ -499,15 +528,15 @@ def _fig_importance(df: pd.DataFrame, y: np.ndarray) -> None:
             drops[f, j] = float(np.mean(vals)) if vals else 0.0
     mean, se = drops.mean(0), drops.std(0) / np.sqrt(N_SPLITS)
     idx = np.argsort(mean)
-    fig, ax = plt.subplots(figsize=(6.4, 3.9))
+    fig, ax = plt.subplots(figsize=(COL_W, 2.9))
     colors = ["#c0392b" if feats[i] in SYNTH + VERB else "#27ae60" for i in idx]
     ax.barh(np.arange(len(idx)), mean[idx], xerr=se[idx], color=colors, alpha=0.85,
-            error_kw=dict(ecolor="#2c3e50", capsize=2.5, lw=0.9))
-    ax.axvline(0, color="k", lw=1)
+            error_kw=dict(ecolor="#2c3e50", capsize=2, lw=0.8))
+    ax.axvline(0, color="k", lw=0.9)
     ax.set_yticks(np.arange(len(idx)))
-    ax.set_yticklabels([feats[i].replace("_", " ") for i in idx], fontsize=7.5)
-    ax.set_xlabel("Permutation importance (AUROC drop, mean $\\pm$ s.e., 5 folds)")
-    ax.set_title("Measured (green) vs. synthetic/constant (red) features", fontsize=9.5)
+    ax.set_yticklabels([feats[i].replace("_", " ") for i in idx])
+    ax.set_xlabel("Permutation importance (AUROC drop, $\\pm$ s.e.)")
+    ax.set_title("Measured (green) vs. synthetic/constant (red)")
     fig.tight_layout()
     for e in ("pdf", "png"):
         fig.savefig(_FIGS / f"fig5_permutation_importance.{e}", dpi=300)
@@ -522,12 +551,13 @@ def _fig_importance(df: pd.DataFrame, y: np.ndarray) -> None:
 def _write_latex(main, per, y, best, bt, bc, ae, aa, n, n_grader) -> None:
     with open(_TABS / "tab_main.tex", "w", encoding="utf-8") as f:
         f.write(
-            "\\begin{table}[t]\n\\centering\n"
+            "\\begin{table*}[t]\n\\centering\n"
             f"\\caption{{Out-of-fold failure prediction on PHMForge ($n={n}$ "
             "trajectories, scenario-grouped 5-fold CV). Brackets are 95\\% "
             "bootstrap CIs; $p$ is a label-permutation test against "
-            "AUROC${=}0.5$. Only the grader-contaminated row is significant, "
-            "and it is an artifact.}\n"
+            "AUROC${=}0.5$. Two rows clear an uncorrected $0.05$; with six "
+            "comparisons the Bonferroni threshold is $0.0083$, which only the "
+            "grader-contaminated row clears --- and that row is an artifact.}\n"
             "\\label{tab:main}\n\\footnotesize\n"
             "\\begin{tabular}{lccc}\n\\toprule\n"
             "\\textbf{Signal set} & \\textbf{AUROC [95\\% CI]} & \\textbf{ECE} "
@@ -536,9 +566,9 @@ def _write_latex(main, per, y, best, bt, bc, ae, aa, n, n_grader) -> None:
             row = (f"{r.model} & {r.auroc:.3f} [{r.auroc_lo:.3f}, {r.auroc_hi:.3f}] "
                    f"& {r.ece:.3f} & {r.p:.3f} \\\\\n")
             if "contaminated" in r.model:
-                row = "\\midrule\n" + row.replace("&", "&", 1)
+                row = "\\midrule\n" + row
             f.write(row)
-        f.write("\\bottomrule\n\\end{tabular}\n\\end{table}\n")
+        f.write("\\bottomrule\n\\end{tabular}\n\\end{table*}\n")
 
     with open(_TABS / "tab_per_backbone.tex", "w", encoding="utf-8") as f:
         f.write("\\begin{table}[t]\n\\centering\n\\caption{Per-backbone "

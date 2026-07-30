@@ -1,0 +1,29 @@
+\begin{table}[t]
+\centering
+\caption{Per backbone, on the computed-outcome stratum only. Holding the model fixed removes the identity confound by construction. $^{\ast}$ marks $\alpha=0.00333$.}
+\label{tab:v2backbone}
+\footnotesize
+\begin{tabular}{llcc}
+\toprule
+\textbf{Backbone} & \textbf{Signals} & \textbf{AUROC [95\% CI]} & $p$ \\
+\midrule
+\texttt{qwen2.5-7b} & token & 0.776$^{\ast}$ [0.610, 0.921] & 0.0020 \\
+ & structural & 0.648 [0.468, 0.798] & 0.0540 \\
+ & observation & 0.664 [0.493, 0.817] & 0.0285 \\
+ & verbalized_posthoc & 0.494 [0.302, 0.678] & 0.5347 \\
+ & all measured & 0.792$^{\ast}$ [0.644, 0.907] & 0.0015 \\
+\midrule
+\texttt{llama-3.3-70b} & token & 0.539 [0.372, 0.716] & 0.3308 \\
+ & structural & 0.547 [0.371, 0.727] & 0.3118 \\
+ & observation & 0.589 [0.420, 0.759] & 0.1559 \\
+ & verbalized_posthoc & 0.239 [0.105, 0.391] & 0.9995 \\
+ & all measured & 0.705 [0.538, 0.860] & 0.0105 \\
+\midrule
+\texttt{gpt-oss-120b} & token & 0.746$^{\ast}$ [0.575, 0.885] & 0.0025 \\
+ & structural & 0.441 [0.256, 0.627] & 0.7706 \\
+ & observation & 0.312 [0.158, 0.471] & 0.9845 \\
+ & verbalized_posthoc & 0.443 [0.275, 0.622] & 0.7756 \\
+ & all measured & 0.504 [0.322, 0.670] & 0.4913 \\
+\bottomrule
+\end{tabular}
+\end{table}

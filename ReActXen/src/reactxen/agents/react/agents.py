@@ -81,6 +81,23 @@ else:
 
 # This class is used only when we have understanding of
 # what is a answer
+# A model asked to report confidence often keeps generating past the action
+# input, emitting its whole remaining plan there ("...} Confidence: 80 Thought 2:
+# ... Action 2: ..."). The tool then receives that entire blob as its argument
+# and the agent loops on one action until the step budget runs out. Truncating at
+# the first continuation marker recovers the real argument. Anchoring to end of
+# string is not enough -- the marker is usually mid-string.
+_ACTION_INPUT_CUT = re.compile(
+    r"\s*(?:Confidence\s*[:=]\s*\d{1,3}"
+    r"|\bThought\s*\d*\s*:"
+    r"|\bAction\s+Input\s*\d*\s*:"
+    r"|\bAction\s*\d*\s*:"
+    r"|\bObservation\s*\d*\s*:"
+    r"|\bFinal\s+Answer\s*:)",
+    re.I,
+)
+
+
 class ReflexionStrategy(Enum):
     """
     NONE: No reflection
@@ -911,6 +928,11 @@ class ReactAgent:
             if self.log_structured_messages:
                 self.json_log[-1]["thought"] = let_me_think_dict["thought"]
                 self.json_log[-1]["raw_llm_output"] = let_me_think_dict["llm_output"]
+                # This branch (ThoughtActTogether, the default from
+                # create_reactxen_agent) previously dropped the logprobs that
+                # prompt_agent had just attached; only the ThoughtThenAct branch
+                # recorded them. That is why no corpus ever contained real ones.
+                self.json_log[-1]["thought_logprobs"] = let_me_think_dict.get("logprobs")
 
             action_dict = let_me_think_dict
             let_me_think = action_dict["thought"]
@@ -1169,6 +1191,15 @@ class ReactAgent:
 
         try:
             action_type, argument = action_dict["action"], action_dict["action_input"]
+            # Recover the real tool argument when the model over-generated past
+            # it (see _ACTION_INPUT_CUT). Finish is exempt: its "argument" is the
+            # free-text final answer, which may legitimately contain these words
+            # and must not be truncated.
+            if isinstance(argument, str) and str(action_type).lower() != "finish":
+                cut = _ACTION_INPUT_CUT.split(argument, maxsplit=1)[0].rstrip()
+                if cut:
+                    argument = cut
+                    action_dict["action_input"] = argument
             # print(action_type, argument)
             # check is proces over
             # print(action_type)
@@ -2038,7 +2069,7 @@ class ReactReflectAgent(ReactAgent):
         self.promptTokens += llmResult["input_token_count"]
         self.llmCalls += 1
 
-        return format_step(
+        formatted = format_step(
             llmResult["generated_text"],
             stop,
             prefix,
@@ -2046,6 +2077,20 @@ class ReactReflectAgent(ReactAgent):
             action_style=self.actionstyle,
             react_style=self.reactstyle,
         )
+
+        # Propagate provider logprobs, mirroring ReactAgent.prompt_agent. Without
+        # this the field is dropped here and the telemetry logger sees nothing.
+        if isinstance(formatted, dict):
+            logprobs = None
+            if "results" in llmResult and len(llmResult["results"]) > 0:
+                res = llmResult["results"][0]
+                if "token_logprobs" in res:
+                    logprobs = res["token_logprobs"]
+            elif "token_logprobs" in llmResult:
+                logprobs = llmResult["token_logprobs"]
+            formatted["logprobs"] = logprobs
+
+        return formatted
 
     def prompt_reflection(self) -> str:
         llmResult = self.reflect_llm(
