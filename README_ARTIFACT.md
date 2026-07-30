@@ -1,7 +1,10 @@
 # Trajectory Calibration for Agentic Digital Twins — replication artifact
 
 Supporting code and data for *"When Agentic Digital Twin Telemetry Measures
-Itself: A Provenance Audit and a Gate"*.
+Itself: A Provenance Audit and a Gate"*, submitted to the 2026 IEEE
+International Conference on Digital Twin.
+
+The manuscript is `DigitalTwinsV2/IEEE_DT2026_ShortPaper.tex`.
 
 Everything reported in the paper is regenerated from the raw telemetry in this
 repository by the scripts below. No number in the manuscript is transcribed by

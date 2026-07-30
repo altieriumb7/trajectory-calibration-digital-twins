@@ -1,13 +1,13 @@
-# DigitalTwinsV2 — audited rewrite of the IEEE SWC 2026 paper
+# DigitalTwinsV2 — audit, corrected pipeline, and manuscript
 
-Self-contained alternative to `IEEE_SWC_2026/`. The only change made to the
-original paper folder was fixing three incorrect citations (see below); its
-claims are untouched.
+Holds the submitted manuscript and everything needed to reproduce it. The
+earlier draft it audits is preserved unmodified under `IEEE_SWC_2026/`, except
+for three citation corrections documented at the end of this file.
 
 ```
 DigitalTwinsV2/
-├── IEEE_SWC_2026_DigitalTwins_V2.tex   # the rewritten paper (IEEEtran)
-├── IEEE_SWC_2026_DigitalTwins_V2.pdf   # compiled: 7 pp. body + 1 pp. refs
+├── IEEE_DT2026_ShortPaper.tex          # the manuscript (IEEEtran, 4 pp.)
+├── IEEE_DT2026_ShortPaper.pdf          # compiled
 ├── AUDIT.md                            # forensic findings, D0-D10
 ├── analysis/
 │   ├── recompute_honest.py             # re-evaluates the ORIGINAL corpus
@@ -59,7 +59,7 @@ reproducible but do not measure what the paper says. `AUDIT.md` has the detail.
 Taken together: **no feature in the original corpus measures the system it
 purports to describe.**
 
-## What V2 reports on the original corpus
+## What the audit reports on the original corpus
 
 Leakage-controlled, scenario-grouped CV, bootstrap CIs, permutation tests:
 
